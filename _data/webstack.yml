@@ -33,6 +33,10 @@
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/runoob..png
       url: https://www.runoob.com/
       description: 编程菜鸟在这里（我）
+    - title: 海子的诗
+      logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E6%B5%B7.png
+      url: http://haizi.ning0.top/
+      description: 我自己整理的
 
 - name: Something
   icon: linecons-thumbs-up
@@ -121,6 +125,10 @@
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E8%B1%86%E7%93%A3%E8%AF%BB%E4%B9%A6.png
           url: https://book.douban.com/
           description: 记录你读过的、想读和正在读的书。
+        - title: 海子的诗
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E6%B5%B7.png
+          url: http://haizi.ning0.top/
+          description: 我自己整理的
         - title: 海子诗全编
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E6%B5%B7.png
           url: https://haizi.huhaitai.com/
