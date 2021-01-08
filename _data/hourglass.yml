@@ -1,10 +1,6 @@
-- name: 2021年
-  Timing-sequence: future
-  id: 1
-  time: 2021/01/01 00:00:00
 - name: 第一场五月天
-  id: 2
+  id: 1
   time: 2018/07/14 19:00:00
 - name: Mayday-Blue-鸟巢
-  id: 3
+  id: 2
   time: 2019/08/24 18:30:00
