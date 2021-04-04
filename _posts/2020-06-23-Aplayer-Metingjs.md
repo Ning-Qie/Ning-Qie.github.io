@@ -33,25 +33,25 @@ Metingjs官网文档：https://github.com/metowolf/MetingJS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 ```
-![image.png](http://qiening.top/upload/2020/06/image-aad57a004b4944a1942e4bf01f662144.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-aad57a004b4944a1942e4bf01f662144.png)
 
 ## 2.在footer中插入以下内容
 ```html
 <!--音乐播放器-->
 <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
 ```
-![image.png](http://qiening.top/upload/2020/06/image-c944d87e86444320a175c652e669fbb4.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-c944d87e86444320a175c652e669fbb4.png)
 
 ## 3.在想要展现音乐插件的位置插入以下内容,这里就单放在了首页。
 
-![image.png](http://qiening.top/upload/2020/06/image-f004538a0d694e6d9a303102d887af8c.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-f004538a0d694e6d9a303102d887af8c.png)
 
 ```html
 <!--首页音乐播放器-->
 <meting-js server="tencent" type="playlist" id="3441886932" fixed="true" autoplay="true" order="random"></meting-js>
 ```
 效果如下（可点击预览）：[宁的小栈](https://ning-qie.github.io/)
-![image.png](http://qiening.top/upload/2020/06/image-4de40ebc0d8a4d0cb864c4fd176fb4aa.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-4de40ebc0d8a4d0cb864c4fd176fb4aa.png)
 
 # 3.用法说明
 
@@ -129,10 +129,10 @@ Metingjs官网文档：https://github.com/metowolf/MetingJS
 
 以我的QQ音乐❤“我喜欢”歌单为例
 
-![image.png](http://qiening.top/upload/2020/06/image-c99c83b4ff8645b39f2bc02979773a60.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-c99c83b4ff8645b39f2bc02979773a60.png)
 
 点击进入后，查看其url，得到<font color=#20B2AA>"playlist" id="3441886932"</font>
-![image.png](http://qiening.top/upload/2020/06/image-8c449ec34fdb4c4f9e8f11fbbbf1ac28.png)
+![image.png](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2020-06-23-Aplayer-Metingjs/image-8c449ec34fdb4c4f9e8f11fbbbf1ac28.png)
 
 故
 >server="tencent" 
