@@ -19,7 +19,7 @@ tag: [随笔,杂记]
 
 <div class="note info no-icon">2.在意生命的质量还是长度？</div>
 
-我更在意生命的质量
+我更在意生命的质量<br>
 ——2021.10.6
 
 <div class="note info no-icon">3.什么东西对我来说是重要的？</div>
