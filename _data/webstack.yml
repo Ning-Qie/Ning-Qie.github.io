@@ -1,6 +1,6 @@
 - name: 常用
   icon: linecons-star
-  links: 
+  links:
     - title: Github
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/GitHub.png
       url: https://github.com/
@@ -40,7 +40,7 @@
 
 - name: Something
   icon: linecons-thumbs-up
-  links: 
+  links:
     - title: Topbook
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/topbook.png
       url: https://topbook.cc/
@@ -57,9 +57,6 @@
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E5%8F%A5%E5%AD%90%E6%8E%A7.png
       url: https://www.juzikong.com/
       description: 收集与分享你喜欢的句子。
-
-
-
     - title: Mixlr
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/Mixlr.png
       url: http://mixlr.com/
@@ -76,11 +73,23 @@
       logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/huawei.png
       url: https://cloud.huawei.com/
       description: 我用来找手机的。
+    - title: 标准地图服务
+      logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E5%9C%B0%E7%90%83.png
+      url: http://bzdt.ch.mnr.gov.cn/
+      description: 官方地图信息
+    - title: docsmall
+      logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/docsmall.png
+      url: https://docsmall.com/
+      description: 在线文件处理工具
+    - title: 迷雾通
+      logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/geph.png
+      url: https://geph.io/
+      description: 上屋顶用的
 
 - name: Code
   icon: linecons-thumbs-up
-  links: 
-  sub: 
+  links:
+  sub:
     - name: 常用网页
       links:
         - title: 阿里云
@@ -118,7 +127,7 @@
 
 - name: 书影音
   icon: linecons-doc
-  sub: 
+  sub:
     - name: 书
       links:
         - title: 豆瓣读书
@@ -128,12 +137,12 @@
         - title: 海子的诗
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E6%B5%B7.png
           url: http://haizi.ning0.top/
-          description: 我自己整理的
+          description: 自己整理的
         - title: 海子诗全编
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/%E6%B5%B7.png
           url: https://haizi.huhaitai.com/
           description: 坐在纸箱上想起疯了的朋友们
-      
+
     - name: 影
       links:
         - title: 豆瓣电影
@@ -167,10 +176,10 @@
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/QQ%E9%9F%B3%E4%B9%90.png
           url: https://y.qq.com/
           description: 我常听的音乐平台。
-    
+
 - name: 设计
   icon: linecons-lightbulb
-  sub: 
+  sub:
     - name: 素材资源
       links:
         - title: iconfont
@@ -208,15 +217,7 @@
         - title: OfficePLUS
           url: http://www.officeplus.cn/Template/Home.shtml
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/officeplus.png
-          description: OfficePLUS，微软Office官方在线模板网站！    
-        - title: 方正字库
-          url: http://www.foundertype.com/
-          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/Fondertype.png
-          description: 方正字库官方网站
-        - title: 字体传奇网
-          url: http://ziticq.com/
-          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/ziticq.png
-          description: 中国首个字体品牌设计师交流网
+          description: OfficePLUS，微软Office官方在线模板网站！
 
     - name: 参考教学
       links:
@@ -232,7 +233,7 @@
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/huaban.png
           url: https://huaban.com/
           description: 收集灵感,保存有用的素材
-    - name: 工具及其他
+    - name: 颜色
       links:
         - title: colorhunt
           url: http://www.colorhunt.co/
@@ -242,3 +243,55 @@
           url: https://www.sioe.cn/yingyong/yanse-rgb-16/
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/RGBcolor.png
           description: RGB颜色值与十六进制颜色码转换工具
+    - name: 字体
+      links:
+        - title: 方正字库
+          url: http://www.foundertype.com/
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/Fondertype.png
+          description: 方正字库官方网站
+        - title: 字体传奇网
+          url: http://ziticq.com/
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/ziticq.png
+          description: 中国首个字体品牌设计师交流网
+        - title: 找字体
+          url: http://www.zfont.cn/
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/zfont.png
+          description: 免费商用字体网站
+
+- name: 软件
+  icon: linecons-lightbulb
+  sub:
+    - name: 实用工具
+      links:
+        - title: 7-Zip
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/7zip.png
+          url: https://www.7-zip.org/
+          description: 好用的解压软件
+        - title: To Do
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/todo.png
+          url: https://todo.microsoft.com/
+          description: 让你从工作到娱乐都保持专注
+        - title: IObit Uninstaller
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/IObitUninstaller.png
+          url: https://www.iobit.com/en/advanceduninstaller.php
+          description: 简单专业的强力卸载软件
+        - title: Snipaste
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/snipaste.png
+          url: https://www.snipaste.com/
+          description: 超好用的截图软件
+    - name: 电脑美化
+      links:
+        - title: Fences
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/fences.png
+          url: https://www.stardock.com/products/fences4/
+          description: 自动组织桌面应用程序，文件和文件夹。
+        - title: Groupy
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/Groupy.png
+          url: https://www.stardock.com/products/groupy/
+          description: 任务窗口合并
+    - name: 设计工具
+      links:
+        - title: Imagine
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/Imagine.png
+          url: https://github.com/meowtec/Imagine/releases
+          description: 图片压缩工具
