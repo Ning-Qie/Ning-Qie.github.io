@@ -42,14 +42,14 @@
 
 /* 江城圆体 */
 @font-face {
-	font-family:KNFontYuanmo;
-	src: url('../fonts/KNFontYuanmo.otf');
+	font-family:JiangchengYuanti;
+	src: url('../fonts/JiangchengYuanti.ttf');
 }
 
 /* 贤二体 */
 @font-face {
-	font-family:JiangchengYuanti;
-	src: url('../fonts/JiangchengYuanti.ttf');
+	font-family:LQXianEr;
+	src: url('../fonts/LQXianEr.ttf');
 }
 
 /* 品如手写体 */
