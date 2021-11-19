@@ -87,3 +87,9 @@
 	font-family:DottedSongtiSquareRegular;
 	src: url('../fonts/DottedSongtiSquareRegular.otf');
 }
+
+/* 素材集市康康体 */
+@font-face {
+	font-family:kangkangti;
+	src: url('../fonts/kangkangti.ttf');
+}
