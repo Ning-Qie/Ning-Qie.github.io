@@ -93,3 +93,9 @@
 	font-family:kangkangti;
 	src: url('../fonts/kangkangti.ttf');
 }
+
+/* クラフト明朝 */
+@font-face {
+	font-family:craftmincho;
+	src: url('../fonts/craftmincho.otf');
+}
