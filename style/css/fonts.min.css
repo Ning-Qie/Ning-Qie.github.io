@@ -1,9 +1,77 @@
+/* 阿里巴巴普惠体 */
 @font-face {
 	font-family:Alibaba-PuHuiTi-Regular;
 	src: url('../fonts/Alibaba-PuHuiTi-Regular.ttf');
 }
 
+/* 卓健橄榄简体 */
 @font-face {
 	font-family:ZhuoJianGanLanJianTi-Regular;
 	src: url('../fonts/ZhuoJianGanLanJianTi-Regular.ttf');
+}
+
+/* 斗鱼追光体 */
+@font-face {
+	font-family:douyu;
+	src: url('../fonts/douyuFont.otf');
+}
+
+/* 问藏书房 */
+@font-face {
+	font-family:wenzang;
+	src: url('../fonts/wenzangshufang.ttf');
+}
+
+/* 新叶念体 */
+@font-face {
+	font-family:xinyenian;
+	src: url('../fonts/xinyenian.otf');
+}
+
+/* 鸿蒙字体 */
+@font-face {
+	font-family:HarmonyOS_Sans_Regular;
+	src: url('../fonts/HarmonyOS_Sans_Regular.ttf');
+}
+
+/* 荆南缘默体 */
+@font-face {
+	font-family:KNFontYuanmo;
+	src: url('../fonts/KNFontYuanmo.otf');
+}
+
+/* 江城圆体 */
+@font-face {
+	font-family:KNFontYuanmo;
+	src: url('../fonts/KNFontYuanmo.otf');
+}
+
+/* 贤二体 */
+@font-face {
+	font-family:JiangchengYuanti;
+	src: url('../fonts/JiangchengYuanti.ttf');
+}
+
+/* 品如手写体 */
+@font-face {
+	font-family:pinrushouxie;
+	src: url('../fonts/PinruShouxie.ttf');
+}
+
+/* 莫大毛笔体 */
+@font-face {
+	font-family:Bakudai-Regular;
+	src: url('../fonts/Bakudai-Regular.ttf');
+}
+
+/* 钟齐流江毛笔草体 */
+@font-face {
+	font-family:LiuJianMaoCao-Regular;
+	src: url('../fonts/LiuJianMaoCao-Regular.ttf');
+}
+
+/* 萌神手写体 */
+@font-face {
+	font-family:Mengshen-Handwritten;
+	src: url('../fonts/Mengshen-Handwritten.ttf');
 }

@@ -4,3 +4,37 @@
 - name: 卓健橄榄简体
   link: https://www.zcool.com.cn/work/ZNDA2MzA3ODQ=.html
   family: ZhuoJianGanLanJianTi-Regular
+- name: 斗鱼追光体
+  link: https://www.zcool.com.cn/work/ZNTM2NjI0ODQ=.html
+  family: douyu
+- name: 问藏书房
+  link: https://www.wencang.com/font.jsp
+  family: wenzang
+- name: 新叶念体
+  link: https://www.zcool.com.cn/work/ZMzc1MDI2Njg=.html
+  family: xinyenian
+- name: 鸿蒙字体
+  link: https://developer.harmonyos.com/cn/docs/design/des-guides/font-0000001157868583
+  family: HarmonyOS_Sans_Regular
+- name: 荆南缘默体
+  link: https://www.maoken.com/freefonts/9550.html
+  family: KNFontYuanmo
+- name: 江城圆体
+  link: https://www.maoken.com/freefonts/4916.html
+  family: JiangchengYuanti
+- name: 贤二体
+  link: http://www.hanyi.com.cn/productdetail.php?id=3102&type=0
+  family: LQXianEr
+  warning: true
+- name: 品如手写体
+  link: https://www.zcool.com.cn/work/ZMjE0MjQyMDg=.html
+  family: pinrushouxie
+- name: 莫大毛笔体
+  link: https://max-everyday.com/2020/03/bakudaifont/
+  family: Bakudai-Regular
+- name: 钟齐流江毛笔草体
+  link: https://fonts.google.com/specimen/Liu+Jian+Mao+Cao
+  family: LiuJianMaoCao-Regular
+- name: 萌神手写体
+  link: https://github.com/MaruTama/Mengshen-pinyin-font
+  family: Mengshen-Handwritten

@@ -245,6 +245,10 @@
           description: RGB颜色值与十六进制颜色码转换工具
     - name: 字体
       links:
+        - title: 收集字体
+          url: http://ning0.top/2021-11-18-Fonts
+          logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/weblogo/fonts.png
+          description: 自己收集的一些字体
         - title: 方正字库
           url: http://www.foundertype.com/
           logo: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/WebsiteCollection/logos/Fondertype.png
