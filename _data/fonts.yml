@@ -38,3 +38,9 @@
 - name: 萌神手写体
   link: https://github.com/MaruTama/Mengshen-pinyin-font
   family: Mengshen-Handwritten
+- name: 內海字體
+  link: https://max-everyday.com/2020/03/naikaifont/
+  family: NaikaiFont-Regular
+- name: 点点中文像素字体
+  link: https://github.com/wixette/dotted-chinese-fonts
+  family: DottedSongtiSquareRegular

@@ -75,3 +75,15 @@
 	font-family:Mengshen-Handwritten;
 	src: url('../fonts/Mengshen-Handwritten.ttf');
 }
+
+/* 內海字體 */
+@font-face {
+	font-family:NaikaiFont-Regular;
+	src: url('../fonts/NaikaiFont-Regular.ttf');
+}
+
+/* 点点中文像素字体 */
+@font-face {
+	font-family:NaikaiFont-Regular;
+	src: url('../fonts/DottedSongtiSquareRegular.otf');
+}
