@@ -3,7 +3,7 @@ layout: post
 title: 网址收藏
 date: 2020-06-22 22:24:30 +0800
 updatetime: 2020/11/12 下午6:11:21
-category: Something
+category: Collect
 thumbnail: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/clay-banks-hwLAI5lRhdM-unsplash.jpg
 icon: link
 summary: 常用网址汇总
