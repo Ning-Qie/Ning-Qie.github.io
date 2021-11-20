@@ -99,3 +99,9 @@
 	font-family:craftmincho;
 	src: url('../fonts/craftmincho.otf');
 }
+
+/* 黄令东齐伋复刻(修改版) */
+@font-face {
+	font-family:qijiti;
+	src: url('../fonts/cqijiti.ttf');
+}
