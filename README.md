@@ -1,4 +1,4 @@
-# 寧の小棧
+# Ning
 
 Theme based on a typecho theme pinghsu
 
