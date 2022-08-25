@@ -21,31 +21,31 @@ tag: [PM,原型]
 
   
 
-- #### 关键词：
+- **关键词：**
 
-  - ##### 可视性
+  - 可视性
 
-  - ##### 可交互性
+  - 可交互性
 
-  - ##### 框架
-
-    
-
-- #### 常见形式：
-
-  - ##### 草图
-
-    <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/image-20220825095912220.png" alt="image-20220825095912220" />
+  - 框架
 
     
 
-  - ##### 数字原型
+- **常见形式：**
+
+  - **草图**
+
+    ![halacious-tZc3vjPCk-Q-unsplash](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/halacious-tZc3vjPCk-Q-unsplash.jpg)
+
+    
+
+  - **数字原型**
 
     ![Pixso画板](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/banner-main-update.png)
 
     
 
-  - ##### HTML文件
+  - **HTML文件**
 
     ![mohammad-rahmani-oXlXu2qukGE-unsplash](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-25-Prototype-Study/mohammad-rahmani-oXlXu2qukGE-unsplash.jpg)
 
