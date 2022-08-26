@@ -10,7 +10,8 @@ summary: 什么都往里面放好了
 tag: [PM,原型]
 ---
 
-[TOC]
+* content
+{:toc}
 
 ## 一、PM
 
