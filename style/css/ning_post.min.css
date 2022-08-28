@@ -73,8 +73,8 @@
     h4,
     h5,
     h6 {
-        font-weight: 400;
-        -webkit-font-smoothing: antialiased
+        font-weight: bold !important;
+        -webkit-font-smoothing: antialiased;
     }
 
     h1 code,
@@ -89,37 +89,42 @@
     h5 tt,
     h6 code,
     h6 tt {
-        font-size: inherit
+        font-size: inherit;
     }
 
     h1 {
-        font-size: 1.4em;
-        color: #222
+        color: #222;
+        font-size: 2.25em;
+        line-height: 1.2;
+        border-bottom: 1px solid #eee;
     }
 
     h2 {
-        font-size: 1.3em;
-        color: #333
+        color: #333;
+        font-size: 1.75em;
+        line-height: 1.225;
+        border-bottom: 1px solid #eee;
     }
 
     h3 {
-        font-size: 1.2em;
-        color: #444
+        color: #444;
+        font-size: 1.5em;
+        line-height: 1.43;
     }
 
     h4 {
-        font-size: 1.1em;
-        color: #555
+        font-size: 1.25em;
+        color: #555;
     }
 
     h5 {
         font-size: 1em;
-        color: #555
+        color: #555;
     }
 
     h6 {
         font-size: 1em;
-        color: #555
+        color: #777;
     }
 
     body>h1:first-child,
@@ -1132,7 +1137,7 @@
         position: absolute;
         top: 0;
         left: -15px;
-        content: '#';
+        /* content: '#'; */
         color: #eb5055
     }
 
