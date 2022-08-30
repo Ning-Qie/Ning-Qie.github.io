@@ -25,7 +25,9 @@ tag: [PM,原型]
 
 - 高保真原型一般用于功能实现、交互设计以及测试开发；低保真原型一般用于头脑风暴、早期测试以及开发确认。
 
+<br>
 
+<br>
 
 ## 二、开发
 
@@ -68,7 +70,9 @@ tag: [PM,原型]
 
 <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-17-PM-professional-term/v2-93214b864dac7a558ebf81d40254b1b8_r.jpg" alt="v2-93214b864dac7a558ebf81d40254b1b8_r" style="zoom:50%;" />
 
+<br>
 
+<br>
 
 ## 三、测试
 
@@ -87,7 +91,9 @@ tag: [PM,原型]
 
 - QA就是质量监督/质量保证。QA即Quality Assurance，它所关注的是对质量的测量及检查，还有通过改进过程来提高软件的质量，依次来指导软件的发行。
 
+<br>
 
+<br>
 
 ## 四、设计
 
@@ -110,7 +116,9 @@ tag: [PM,原型]
 
 - Moodboard，中文翻译叫“情绪板”，是国外设计师最常用视觉调研工具。它是由设计师对一个品牌、产品甚至是海报主题充分理解后，收集相关的色彩，影像，字体或其它材料等视觉元素将其汇集在一起，最后形成作为设计方向与形式的参考。
 
+<br>
 
+<br>
 
 ## 五、其他
 
@@ -165,3 +173,14 @@ tag: [PM,原型]
 
 
 <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-17-PM-professional-term/image-20220809143259201.png" alt="image-20220809143259201" style="zoom:50%;" />
+
+
+
+##### VUCA时代
+
+- VUCA 的中文含义分别对应着易变性、不确定性、复杂性和模糊性。
+  - V：Volatility 易变性
+  - U：Uncertainty 不确定性
+  - C：Complexity 复杂性
+  - A：Ambiguity 模糊性
+- VUCA 描述的其实是时代特征，就是在说我们这个世界的变化速度太快，问题也越来越复杂。

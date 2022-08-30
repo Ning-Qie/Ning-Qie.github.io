@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 笔记：苏杰的产品创新课
+title: 苏杰的产品创新课
 date: 2022-08-30 10:30:00 +0800
 updatetime:
 category: PM

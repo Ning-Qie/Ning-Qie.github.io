@@ -35,20 +35,22 @@ tag: [PM,原型]
 
   - **草图**
 
-    ![halacious-tZc3vjPCk-Q-unsplash](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/halacious-tZc3vjPCk-Q-unsplash.jpg)
+    <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/halacious-tZc3vjPCk-Q-unsplash.jpg" alt="halacious-tZc3vjPCk-Q-unsplash" style="zoom:8%;" />
 
     
 
   - **数字原型**
 
-    ![Pixso画板](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/banner-main-update.png)
+    <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/banner-main-update.png" alt="Pixso画板" style="zoom:20%;" />
 
     
 
   - **HTML文件**
 
-    ![mohammad-rahmani-oXlXu2qukGE-unsplash](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-25-Prototype-Study/mohammad-rahmani-oXlXu2qukGE-unsplash.jpg)
+    <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-25-Prototype-Study/mohammad-rahmani-oXlXu2qukGE-unsplash.jpg" alt="mohammad-rahmani-oXlXu2qukGE-unsplash" style="zoom:5%;" />
 
+<br>
 
+<br>
 
 ## 二、原型有什么用？
