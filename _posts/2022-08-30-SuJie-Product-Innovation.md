@@ -25,8 +25,6 @@ tag: [PM]
 
 <br>
 
-<br>
-
 ## 概述篇
 
 ### 01 | 为什么每个人都要学产品创新课？
@@ -43,13 +41,9 @@ tag: [PM]
 
 <br>
 
-<br>
-
 ### 02 | 四轮MVP框架导读
 
 <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-30-SuJie-Product-Innovation/888dcab777089421e4a334d0c66f6dea.webp" alt="888dcab777089421e4a334d0c66f6dea" style="zoom: 33%;" />
-
-<br>
 
 <br>
 
@@ -64,15 +58,11 @@ tag: [PM]
 
 <br>
 
-<br>
-
 ### 04 | 竞品生态：真正有效的竞品分析怎么做？
 
 <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-30-SuJie-Product-Innovation/5cde709be004e35d45faaf09e0b37986.webp" alt="5cde709be004e35d45faaf09e0b37986" style="zoom: 33%;" />
 
 <img src="https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/posts_img/2022-08-30-SuJie-Product-Innovation/0a7da2448e8ce8fe0c61de3f1fb21be8.webp" alt="0a7da2448e8ce8fe0c61de3f1fb21be8" style="zoom:33%;" />
-
-<br>
 
 <br>
 
