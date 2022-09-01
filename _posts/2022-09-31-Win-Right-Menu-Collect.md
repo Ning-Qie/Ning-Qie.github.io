@@ -4,7 +4,7 @@ title: Windows修改右键菜单方法汇总
 date: 2022-09-01 17:30:00 +0800
 updatetime:
 category: Collect
-thumbnail: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/valent-lau-8NB47kXdDJc-unsplash.jpg
+thumbnail: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/milad-fakurian-tUF--C9oOuE-unsplash.jpg
 icon: code
 summary: 让右键简洁方便一点~
 tag: [Windows]
@@ -18,6 +18,47 @@ tag: [Windows]
       background-color: aliceblue !important;
    }
 </style>
+
+### 修改Win11菜单样式
+
+#### 1.启用传统右键菜单
+
+打开cmd命令行，执行以下命令即可：
+
+```powershell
+reg add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve
+```
+
+
+
+#### 2.恢复Win11折叠菜单
+
+打开cmd命令行，执行以下命令即可：
+
+```powershell
+reg delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}  /f
+```
+
+
+
+#### 其他：使样式生效
+
+**方法一：**注销重启即可
+
+
+
+**方法二：**
+
+cmd执行下列命令
+
+```powershell
+# 结束explorer.exe进程
+taskkill /im explorer.exe /f
+# 启动 explorer.exe
+start c:\windows\explorer.exe
+```
+
+<br>
 
 ### 管理工具：RightMenuMgr
 
