@@ -251,3 +251,8 @@
 .navbar-search:active>form, .navbar-search:focus>form, .navbar-search:hover>form {
     margin-right: 40px;
 }
+
+/* 文章浏览量显示 */
+.leancloud_visitors {
+    display: none;
+}
