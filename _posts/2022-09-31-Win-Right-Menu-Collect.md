@@ -12,6 +12,13 @@ tag: [Windows]
 
 * content
 {:toc}
+
+<style>
+   .highlight .err{
+      background-color: aliceblue !important;
+   }
+</style>
+
 ### 管理工具：RightMenuMgr
 
 [点击下载](https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/something/Software/RightMenuMgr-1.2.1.7z)
