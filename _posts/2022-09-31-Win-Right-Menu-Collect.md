@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Win11右键菜单玩法汇总
+title: Windows右键菜单玩法
 date: 2022-09-01 17:30:00 +0800
 updatetime:
 category: Collect
