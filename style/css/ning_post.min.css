@@ -176,7 +176,8 @@
     }
 
     li {
-        word-wrap: break-word
+        word-wrap: break-word;
+        font-size: 14px;
     }
 
     li p {
