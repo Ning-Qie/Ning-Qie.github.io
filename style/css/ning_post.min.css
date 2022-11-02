@@ -2819,8 +2819,9 @@
         opacity: 1
     }
 
+    /* 文章目录 */
     .post-container .navigation {
-        top: 40px;
+        top: 60px;
         overflow: scroll;
         max-height: calc(100vh - 100px);
         position: fixed;
@@ -2832,4 +2833,22 @@
 
     .post-container .navigation::-webkit-scrollbar {
         display: none;
+    }
+
+    .post-container .navigation a {
+        color: grey;
+    }
+
+    /* 文章抬头头像 */
+    .post-meta-wrap .author-avatar img{
+        display: none;
+    }
+
+    /* 评论区 */
+    div#vcomments{
+        display: none;
+    }
+
+    .post-container {
+        margin-bottom: unset;
     }

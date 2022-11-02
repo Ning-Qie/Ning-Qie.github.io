@@ -10,6 +10,10 @@ thumbnail: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbn
     .post-content {
         margin-bottom: 100px !important;
     }
+    .post-meta-wrap .author-avatar img{
+        display: block;
+    }
+
 </style>
 
 **且宁**
