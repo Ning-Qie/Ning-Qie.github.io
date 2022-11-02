@@ -2818,3 +2818,18 @@
         transition: opacity .5s ease-in-out;
         opacity: 1
     }
+
+    .post-container .navigation {
+        top: 40px;
+        overflow: scroll;
+        max-height: calc(100vh - 100px);
+        position: fixed;
+        margin-left: -280px !important;
+        min-width: 268px;
+        color: cadetblue;
+        line-height: 28px;
+    }
+
+    .post-container .navigation::-webkit-scrollbar {
+        display: none;
+    }
