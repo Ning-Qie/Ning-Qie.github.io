@@ -14,12 +14,7 @@ tag: [Markdown,语法]
 * content
 {:toc}
 
-参考教程：[Markdown 教程 | 菜鸟教程 (runoob.com)](https://www.runoob.com/markdown/md-tutorial.html)
-
-
-
-# 常用语法
-
+**参考教程：**[Markdown 教程 | 菜鸟教程 (runoob.com)](https://www.runoob.com/markdown/md-tutorial.html)
 
 
 ## 1.标题格式
