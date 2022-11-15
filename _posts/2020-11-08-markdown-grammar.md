@@ -167,29 +167,3 @@ tag: [Markdown,语法]
 `<www.baidu.com>`
 
 <www.baidu.com>
-
-
-
-#### 代码
-
-代码格式为：
-
-```markdown
-`Code`
-```
-
-例：`Code`
-
-
-
-代码块格式为：
-
-```
-​```这里输入语言种类，如：html、markdown等
-这里输入你的代码
-​```
-```
-
-
-> 快捷键：【Ctrl + Shift + K】
-

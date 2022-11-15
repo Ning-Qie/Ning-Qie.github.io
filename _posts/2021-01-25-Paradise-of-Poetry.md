@@ -15,14 +15,21 @@ tag: [诗,摘抄]
 
 <style>
     .post-content h5 {
-    margin: 20px 0 10px 0;
+    margin: 20px 0 5px 0;
     }
+
     .post-content p {
     margin: 0 0 40px 0;
     }
+
     author {
     font-family: cursive;
-}
+    margin: 0 0 5px 0;
+    display: block;
+    color: grey;
+    font-size: 14px;
+    font-style: oblique;
+    }
 </style>
 
 <div class="note info"><a href="http://haizi.ning0.top" target="_blank">海子的诗</a></div>
