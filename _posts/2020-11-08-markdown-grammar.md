@@ -14,7 +14,7 @@ tag: [Markdown,语法]
 * content
 {:toc}
 
-**参考教程：**[Markdown 教程 | 菜鸟教程 (runoob.com)](https://www.runoob.com/markdown/md-tutorial.html)
+参考教程：[Markdown 教程 | 菜鸟教程 (runoob.com)](https://www.runoob.com/markdown/md-tutorial.html)
 
 
 ## 1.标题格式
@@ -187,7 +187,7 @@ tag: [Markdown,语法]
 
 代码块格式为：
 
-```markdown
+```
 ​```这里输入语言种类，如：html、markdown等
 这里输入你的代码
 ​```
@@ -208,6 +208,7 @@ tag: [Markdown,语法]
 </body>
 </html>
 ```
+
 
 > 快捷键：【Ctrl + Shift + K】
 

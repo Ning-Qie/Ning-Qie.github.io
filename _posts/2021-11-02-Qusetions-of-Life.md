@@ -3,7 +3,7 @@ layout: post
 title: 人生之问
 date: 2021-11-02 22:30:00 +0800
 updatetime:
-category: Something
+category: LifeTour
 thumbnail: https://ning-blog-1304206373.cos.ap-nanjing.myqcloud.com/image/thumbnail/towfiqu-barbhuiya-oZuBNC-6E2s-unsplash.jpg
 icon: note
 summary: 一些值得思考的问题
