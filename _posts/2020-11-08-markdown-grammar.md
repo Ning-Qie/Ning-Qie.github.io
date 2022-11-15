@@ -14,9 +14,6 @@ tag: [Markdown,语法]
 * content
 {:toc}
 
-参考教程：[Markdown 教程 | 菜鸟教程 (runoob.com)](https://www.runoob.com/markdown/md-tutorial.html)
-
-
 ## 1.标题格式
 
 `# 标题内容`为标题格式，注意空格的输入！
@@ -191,22 +188,6 @@ tag: [Markdown,语法]
 ​```这里输入语言种类，如：html、markdown等
 这里输入你的代码
 ​```
-```
-
-例：
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	
-</body>
-</html>
 ```
 
 
