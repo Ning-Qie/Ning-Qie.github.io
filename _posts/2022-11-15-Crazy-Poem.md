@@ -10,6 +10,15 @@ summary: 诗，是写给自己的
 tag: [诗]
 ---
 
+<style>
+    .post-content p {
+    padding: 20px 10px 10px 20px;
+    border: 3px solid #ddd;
+    border-color: lightgrey;
+    margin: 40px 0;
+    border-radius: 10px;
+    }
+</style>
 
 * content
 {:toc}
