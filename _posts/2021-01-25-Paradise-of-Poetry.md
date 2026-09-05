@@ -36,7 +36,7 @@ tag: [诗,摘抄]
     }
 </style>
 
-<div class="note info"><a href="http://haizi.ning0.top" target="_blank">海子的诗</a></div>
+<div class="note info"><a href="http://haizi.ning0ing.com" target="_blank">海子的诗</a></div>
 
 
 
