@@ -2,21 +2,69 @@
 layout: none
 ---
 [
-  {% for post in site.posts %}
-    {
-      "title"    : "{{ post.title | escape }}",
-      "category" : "{{ post.category }}",
-      "tags"     : "{{ post.tags | join: ', ' }}",
-      "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "date"     : "{{ post.date }}",
-      "description" : "{{ post.summary  }}",
-      "content"  : "{{ post.content 
-        | strip_html  | strip | rstrip | replace: '	',''
-        | replace: '@','' | replace: ']','' | replace: '[','' | replace: ':','' | replace: '?','' | replace: '=','' 
-        | replace: '{{','' | replace: '\','' | replace: '/','' | replace: '#','' | replace: '\/','' | replace: '//','' | replace: '.','' 
-        | replace: '>','' | replace: '<','' | replace: '%','' | replace: '&','' | replace: '"',' ' | replace: '\\','&#92;' 
-        | strip_newlines
-        }}"
-    } {% unless forloop.last %},{% endunless %}
-  {% endfor %}
+{% assign first = true %}
+{% for post in site.posts %}{% unless post.layout == 'collection' %}{% unless first %},{% endunless %}{% assign first = false %}
+  {
+    "title": {{ post.title | jsonify }},
+    "category": {{ post.category | default: '' | jsonify }},
+    "tags": {{ post.tag | join: ', ' | jsonify }},
+    "url": {{ post.url | prepend: site.baseurl | jsonify }},
+    "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "description": {{ post.summary | default: '' | jsonify }},
+    "content": {{ post.content | strip_html | strip_newlines | jsonify }}
+  }
+{% endunless %}{% endfor %}
+{% for entry in site.data.quotes %}{% unless first %},{% endunless %}{% assign first = false %}
+  {% capture qtitle %}摘抄 · {% if entry.dateLabel and entry.dateLabel != '' %}{{ entry.dateLabel }}{% elsif entry.date and entry.date != '' %}{{ entry.date | date: "%Y.%-m.%-d" }}{% else %}{{ entry.year }}{% endif %}{% if entry.source and entry.source != '' %} · 《{{ entry.source }}》{% endif %}{% endcapture %}
+  {% capture qdesc %}{{ entry.author }}{% if entry.source and entry.source != '' %}《{{ entry.source }}》{% endif %}{% endcapture %}
+  {% capture qcontent %}{{ entry.text }} {{ entry.author }} {{ entry.source }} {{ entry.note }}{% endcapture %}
+  {
+    "title": {{ qtitle | jsonify }},
+    "category": "Collect",
+    "tags": {{ entry.tags | join: ', ' | jsonify }},
+    "url": {{ '/2020-06-26-zhaichao#' | append: entry.id | prepend: site.baseurl | jsonify }},
+    "date": {{ entry.date | default: '' | jsonify }},
+    "description": {{ qdesc | jsonify }},
+    "content": {{ qcontent | strip_html | strip_newlines | jsonify }}
+  }
+{% endfor %}
+{% for entry in site.data.notes %}{% unless first %},{% endunless %}{% assign first = false %}
+  {% capture ntitle %}杂记 · {% if entry.dateLabel and entry.dateLabel != '' %}{{ entry.dateLabel }}{% elsif entry.date and entry.date != '' %}{{ entry.date | date: "%Y.%-m.%-d" }}{% else %}{{ entry.year }}{% endif %}{% endcapture %}
+  {% capture ndesc %}{{ entry.author }}{% if entry.source and entry.source != '' %}《{{ entry.source }}》{% endif %}{% endcapture %}
+  {% capture ncontent %}{{ entry.text }} {{ entry.author }} {{ entry.source }}{% endcapture %}
+  {
+    "title": {{ ntitle | jsonify }},
+    "category": "Something",
+    "tags": {{ entry.tags | join: ', ' | jsonify }},
+    "url": {{ '/2021-03-24-zaji#' | append: entry.id | prepend: site.baseurl | jsonify }},
+    "date": {{ entry.date | default: '' | jsonify }},
+    "description": {{ ndesc | jsonify }},
+    "content": {{ ncontent | strip_html | strip_newlines | jsonify }}
+  }
+{% endfor %}
+{% for entry in site.data['poems-crazy'] %}{% unless first %},{% endunless %}{% assign first = false %}
+  {% capture ctitle %}疯子的诗 · {% if entry.dateLabel and entry.dateLabel != '' %}{{ entry.dateLabel }}{% elsif entry.date and entry.date != '' %}{{ entry.date | date: "%Y.%-m.%-d" }}{% else %}{{ entry.year }}{% endif %}{% endcapture %}
+  {
+    "title": {{ ctitle | jsonify }},
+    "category": "Something",
+    "tags": {{ entry.tags | join: ', ' | jsonify }},
+    "url": {{ '/2022-11-15-Crazy-Poem#' | append: entry.id | prepend: site.baseurl | jsonify }},
+    "date": {{ entry.date | default: '' | jsonify }},
+    "description": "原创诗",
+    "content": {{ entry.text | strip_html | strip_newlines | jsonify }}
+  }
+{% endfor %}
+{% for entry in site.data['poems-paradise'] %}{% unless first %},{% endunless %}{% assign first = false %}
+  {% capture ptitle %}{% if entry.title and entry.title != '' %}{{ entry.title }}{% else %}诗 · {{ entry.dateLabel }}{% endif %}{% endcapture %}
+  {% capture pcontent %}{{ entry.text }} {{ entry.author }}{% endcapture %}
+  {
+    "title": {{ ptitle | jsonify }},
+    "category": "Collect",
+    "tags": {{ entry.tags | join: ', ' | jsonify }},
+    "url": {{ '/2021-01-25-Paradise-of-Poetry#' | append: entry.id | prepend: site.baseurl | jsonify }},
+    "date": {{ entry.date | default: '' | jsonify }},
+    "description": {{ entry.author | default: '' | jsonify }},
+    "content": {{ pcontent | strip_html | strip_newlines | jsonify }}
+  }
+{% endfor %}
 ]

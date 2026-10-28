@@ -3,7 +3,7 @@
 
   {% include head.html %}
 
-<body class="bg-grey" gtools_scp_screen_capture_injected="true">
+<body class="bg-grey{% if page.body_class %} {{ page.body_class }}{% endif %}" gtools_scp_screen_capture_injected="true">
 
     {% include header.html %}
 

@@ -33,7 +33,6 @@
         
         <!--用以js函数判断的内容-->
         <input type="hidden" id="site_url" value="{{ site.url }}/">
-        <input type="hidden" id="night_or_day" value="default">
         <input type="hidden" id="visitor_id" value="default">
 
         <a href="{{ '/music' | prepend: site.baseurl }}" class="icon_menu_ning" target="_blank">
@@ -41,13 +40,10 @@
         </a>
         
 
-        <a href="javascript:start_ning_night();" οnclick="js_method()" class="night_button" style="display: initial;" title="夜间模式">
-            {% include night_button.html %}
-        </a>
-
-        <a href="javascript:start_ning_day();" οnclick="js_method()" class="day_button" style="display: none;" title="日间模式">
-            {% include day_button.html %}
-        </a>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换到夜间模式" aria-pressed="false" title="切换到夜间模式">
+            <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M19.1 4.9l-1.6 1.6M6.5 17.5l-1.6 1.6"/></svg>
+            <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        </button>
 
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>

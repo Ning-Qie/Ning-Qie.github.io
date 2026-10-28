@@ -1,0 +1,11 @@
+<section class="col-group" id="{{ include.gid }}" data-target="{{ include.gid }}">
+    <div class="col-group-head">
+        <h2>{{ include.group.name }}</h2>
+        <span class="n">{{ include.group.items | size }} {{ include.unit }}</span>
+        <span class="line"></span>
+        <button class="top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到顶部 ↑</button>
+    </div>
+    {% for item in include.group.items %}
+        {% include collection/entry.html entry=item kind=include.kind %}
+    {% endfor %}
+</section>

@@ -1,0 +1,56 @@
+{% assign entry = include.entry %}
+{% assign date_text = '' %}
+{% if entry.dateLabel and entry.dateLabel != '' %}
+    {% assign date_text = entry.dateLabel %}
+{% elsif entry.date and entry.date != '' %}
+    {% assign date_text = entry.date | date: "%Y.%-m.%-d" %}
+{% elsif entry.year and entry.year != 0 %}
+    {% assign date_text = entry.year %}
+{% endif %}
+
+{% assign source_text = '' %}
+{% if entry.citeAnomaly %}
+    {% assign source_text = entry.cite %}
+{% else %}
+    {% if entry.author and entry.author != '' %}{% assign source_text = entry.author %}{% endif %}
+    {% if entry.source and entry.source != '' %}{% assign source_text = source_text | append: '《' | append: entry.source | append: '》' %}{% endif %}
+    {% if entry.note and entry.note != '' %}{% assign source_text = source_text | append: ' ' | append: entry.note %}{% endif %}
+{% endif %}
+
+{% if include.kind == 'poems' %}
+<article class="col-card col-poem" id="{{ entry.id }}">
+    {% if entry.title and entry.title != '' %}<h3 class="col-poem-title">{{ entry.title | escape }}</h3>{% endif %}
+    {% if entry.author and entry.author != '' %}<div class="col-poem-author">{{ entry.author | escape }}</div>{% endif %}
+    <p class="col-text">{{ entry.text | escape }}</p>
+    <div class="col-card-meta">
+        {% if date_text != '' %}
+            <time class="col-date"{% if entry.date and entry.date != '' %} datetime="{{ entry.date }}"{% endif %}>{{ date_text }}</time>
+        {% endif %}
+        <div class="col-actions">
+            <button class="col-btn" type="button" data-copy="{{ entry.id }}" title="复制这首诗">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="10" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
+            </button>
+            <a class="col-btn" href="#{{ entry.id }}" title="单条链接">#</a>
+        </div>
+    </div>
+    <span class="col-cite-hidden">{{ entry.author | escape }}</span>
+</article>
+{% else %}
+<article class="col-card col-quote" id="{{ entry.id }}">
+    <p class="col-text">{{ entry.text | escape }}</p>
+    <div class="col-card-meta">
+        {% if date_text != '' %}
+            <time class="col-date"{% if entry.date and entry.date != '' %} datetime="{{ entry.date }}"{% endif %}>{{ date_text }}</time>
+        {% endif %}
+        {% if date_text != '' and source_text != '' %}<span class="col-dot"></span>{% endif %}
+        {% if source_text != '' %}<span class="col-source">{{ source_text | escape }}</span>{% endif %}
+        <div class="col-actions">
+            <button class="col-btn" type="button" data-copy="{{ entry.id }}" title="复制这条内容">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="10" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
+            </button>
+            <a class="col-btn" href="#{{ entry.id }}" title="单条链接">#</a>
+        </div>
+    </div>
+    <span class="col-cite-hidden">{{ source_text | escape }}</span>
+</article>
+{% endif %}

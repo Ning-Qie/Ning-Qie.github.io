@@ -1,0 +1,499 @@
+/* ==========================================================================
+   且宁 · 夜间模式
+   颜色由 html[data-theme="dark"] 控制；首屏由 head 内联脚本提前设置
+   ========================================================================== */
+
+html {
+    background: #f7f7f7;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    background: #1b1c1f;
+}
+
+html[data-theme="dark"] body {
+    background-color: #1b1c1f;
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .bg-grey {
+    background-color: #1b1c1f !important;
+}
+
+html[data-theme="dark"] .bg-white {
+    background-color: #202125 !important;
+}
+
+/* ---------- header ---------- */
+
+html[data-theme="dark"] .header {
+    background: #202125 !important;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .35);
+}
+
+html[data-theme="dark"] .navbar-logo,
+html[data-theme="dark"] .navbar-menu a,
+html[data-theme="dark"] .navbar-mobile-menu ul li a {
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .navbar-menu a:hover,
+html[data-theme="dark"] .navbar-mobile-menu ul li a:hover {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .navbar-search .icon-search {
+    color: #a9a6a0;
+}
+
+html[data-theme="dark"] .navbar-search input {
+    color: #e6e2db;
+    background: #2a2b30;
+    border-color: #3a3b41;
+}
+
+html[data-theme="dark"] .navbar-search input::placeholder {
+    color: #7f7c76;
+}
+
+html[data-theme="dark"] .navbar-mobile-menu {
+    background: #202125;
+}
+
+html[data-theme="dark"] .icon-menu span,
+html[data-theme="dark"] .icon-menu:before,
+html[data-theme="dark"] .icon-menu:after {
+    background: #d8d5cf !important;
+}
+
+html[data-theme="dark"] .icon_menu_ning,
+html[data-theme="dark"] .theme-toggle {
+    color: #b9b5ae;
+}
+
+html[data-theme="dark"] .icon_menu_ning:hover,
+html[data-theme="dark"] .theme-toggle:hover {
+    color: #ffffff;
+}
+
+.theme-toggle {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0 0 0 2px;
+    width: 40px;
+    height: 40px;
+    display: inline-grid;
+    place-items: center;
+    vertical-align: middle;
+    color: #666;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.theme-toggle:hover {
+    background: rgba(127, 127, 127, .08);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.theme-toggle .theme-sun {
+    display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-moon {
+    display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-sun {
+    display: block;
+}
+
+/* ---------- home / archive / category cards ---------- */
+
+html[data-theme="dark"] .post-list-item-container {
+    background: #24252a !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
+}
+
+html[data-theme="dark"] .item-label,
+html[data-theme="dark"] .item-slant,
+html[data-theme="dark"] .reverse-slant {
+    background: #24252a !important;
+}
+
+html[data-theme="dark"] .bg-deepgrey {
+    background: #2f3036 !important;
+}
+
+html[data-theme="dark"] .item-title,
+html[data-theme="dark"] .item-title a {
+    color: #e6e2db !important;
+}
+
+html[data-theme="dark"] .item-meta-cat a {
+    color: #a9a6a0;
+}
+
+html[data-theme="dark"] .item-desc {
+    background: rgba(20, 21, 24, .62) !important;
+}
+
+html[data-theme="dark"] .item-desc p {
+    color: #dedad3;
+}
+
+html[data-theme="dark"] .post-card img,
+html[data-theme="dark"] .category-card img,
+html[data-theme="dark"] .nav-bg img {
+    filter: brightness(78%);
+}
+
+html[data-theme="dark"] .categorys-title {
+    color: #e6e2db !important;
+}
+
+html[data-theme="dark"] .post-margin {
+    background-color: #2f3036 !important;
+}
+
+/* ---------- post ---------- */
+
+html[data-theme="dark"] .post-header-thumb-op img {
+    filter: brightness(72%);
+}
+
+html[data-theme="dark"] .post-header-thumb-cover {
+    background: rgba(20, 21, 24, .55);
+}
+
+html[data-theme="dark"] .post-header-thumb-title,
+html[data-theme="dark"] .post-header-thumb-meta,
+html[data-theme="dark"] .post-header-thumb-meta a {
+    color: #f0ece5;
+}
+
+html[data-theme="dark"] .post-container,
+html[data-theme="dark"] .post-content {
+    background: #232428 !important;
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .post-content h1,
+html[data-theme="dark"] .post-content h2,
+html[data-theme="dark"] .post-content h3,
+html[data-theme="dark"] .post-content h4,
+html[data-theme="dark"] .post-content h5,
+html[data-theme="dark"] .post-content h6 {
+    color: #e6e2db !important;
+    border-bottom-color: #3a3b41;
+}
+
+html[data-theme="dark"] .post-content p,
+html[data-theme="dark"] .post-content li,
+html[data-theme="dark"] .post-content blockquote {
+    color: #c8c4bc !important;
+}
+
+html[data-theme="dark"] .post-content a {
+    color: #8fb7cf !important;
+}
+
+html[data-theme="dark"] .post-content strong,
+html[data-theme="dark"] .post-content b {
+    color: #efeae2;
+}
+
+html[data-theme="dark"] .post-content code {
+    color: #e2c8a8 !important;
+    background: #2e2f35 !important;
+}
+
+html[data-theme="dark"] .post-content pre,
+html[data-theme="dark"] .post-content .highlight,
+html[data-theme="dark"] .post-content div.highlight {
+    background: #1c1d21 !important;
+    border-color: #34353b;
+}
+
+html[data-theme="dark"] .post-content table,
+html[data-theme="dark"] .post-content tr,
+html[data-theme="dark"] .post-content td,
+html[data-theme="dark"] .post-content th {
+    background: #2a2b30 !important;
+    color: #d8d5cf !important;
+    border-color: #3a3b41 !important;
+}
+
+html[data-theme="dark"] .post-content blockquote {
+    border-left-color: #4a4b52;
+    background: #1e1f22;
+}
+
+html[data-theme="dark"] .post-info,
+html[data-theme="dark"] .post-info a {
+    color: #a9a6a0;
+}
+
+html[data-theme="dark"] .post-navigation,
+html[data-theme="dark"] .nav-links {
+    background: transparent;
+}
+
+html[data-theme="dark"] .nav-inside {
+    background: rgba(20, 21, 24, .62);
+}
+
+html[data-theme="dark"] .nav-title,
+html[data-theme="dark"] .nav-before,
+html[data-theme="dark"] .nav-date {
+    color: #dedad3;
+}
+
+html[data-theme="dark"] .note,
+html[data-theme="dark"] .note.info,
+html[data-theme="dark"] .note.warning,
+html[data-theme="dark"] .note.primary,
+html[data-theme="dark"] .note.danger {
+    background: #2a2b30 !important;
+    color: #d8d5cf;
+    border-left-color: #4a4b52;
+}
+
+/* ---------- comments / valine ---------- */
+
+html[data-theme="dark"] .comment,
+html[data-theme="dark"] .v,
+html[data-theme="dark"] .vcard,
+html[data-theme="dark"] .vhead,
+html[data-theme="dark"] .vtext,
+html[data-theme="dark"] .vempty,
+html[data-theme="dark"] .vloading,
+html[data-theme="dark"] .vcount {
+    color: #d8d5cf !important;
+}
+
+html[data-theme="dark"] .vcard {
+    background: #2a2b30 !important;
+    border-color: #3a3b41 !important;
+}
+
+html[data-theme="dark"] .vinput,
+html[data-theme="dark"] .veditor,
+html[data-theme="dark"] textarea.vinput {
+    color: #e6e2db !important;
+    background: #24252a !important;
+    border-color: #3a3b41 !important;
+}
+
+html[data-theme="dark"] .vbtn {
+    color: #d8d5cf !important;
+    background: #2a2b30 !important;
+    border-color: #3a3b41 !important;
+}
+
+/* ---------- search ---------- */
+
+html[data-theme="dark"] .common-title {
+    color: #f0ece5 !important;
+}
+
+html[data-theme="dark"] #search-input {
+    color: #e6e2db !important;
+    background: #24252a !important;
+    border-color: #3a3b41 !important;
+}
+
+html[data-theme="dark"] #results-container,
+html[data-theme="dark"] #results-container a,
+html[data-theme="dark"] #results-container li {
+    color: #d8d5cf !important;
+}
+
+/* ---------- gallery / hourglass ---------- */
+
+html[data-theme="dark"] .img-item {
+    background: #24252a !important;
+    box-shadow: 1px 2px 2px 0 #111 !important;
+}
+
+html[data-theme="dark"] .biaotiss,
+html[data-theme="dark"] .biaotis span {
+    color: #d8d5cf !important;
+}
+
+html[data-theme="dark"] .card {
+    background: #24252a !important;
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .card-content,
+html[data-theme="dark"] .HotDate {
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .HotDate {
+    color: #e0a15b;
+}
+
+/* ---------- footer ---------- */
+
+html[data-theme="dark"] .footer {
+    background: #202125 !important;
+    box-shadow: 0 4px 10px 10px rgba(0, 0, 0, .18);
+}
+
+html[data-theme="dark"] .footer,
+html[data-theme="dark"] .footer a,
+html[data-theme="dark"] .info-text,
+html[data-theme="dark"] .info-text a {
+    color: #a9a6a0;
+}
+
+html[data-theme="dark"] .circle {
+    border-color: #3a3b41;
+    color: #d8d5cf;
+}
+
+html[data-theme="dark"] .circle:hover {
+    color: #8fb7cf;
+}
+
+/* ---------- misc ---------- */
+
+html[data-theme="dark"] ::selection {
+    background: #4a3a33;
+    color: #fff;
+}
+
+html[data-theme="dark"] .search-highlight {
+    color: #f0c674;
+}
+
+/* ---------- 文章目录 / APlayer / 移动菜单补充 ---------- */
+
+html[data-theme="dark"] #navigation .nav a,
+html[data-theme="dark"] #navigation .sidenav a,
+html[data-theme="dark"] .sidenav a {
+    color: #9d9992;
+}
+
+html[data-theme="dark"] #navigation .nav a:hover,
+html[data-theme="dark"] #navigation .sidenav a:hover,
+html[data-theme="dark"] .sidenav a:hover {
+    color: #e6e2db;
+}
+
+html[data-theme="dark"] #navigation .nav a.active,
+html[data-theme="dark"] #navigation .sidenav a.active,
+html[data-theme="dark"] .sidenav a.active {
+    color: #e6e2db;
+    border-left-color: #d18a72;
+}
+
+html[data-theme="dark"] .navbar-mobile-menu ul,
+html[data-theme="dark"] .navbar-mobile-menu {
+    background: #202125 !important;
+    border-color: #34353b !important;
+}
+
+html[data-theme="dark"] .navbar-mobile-menu li {
+    border-color: #34353b !important;
+}
+
+html[data-theme="dark"] .aplayer {
+    background: #24252a !important;
+    color: #d8d5cf !important;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .25) !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-info,
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-music,
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-music .aplayer-title,
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-music .aplayer-author,
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-controller .aplayer-time,
+html[data-theme="dark"] .aplayer .aplayer-list,
+html[data-theme="dark"] .aplayer .aplayer-list ol,
+html[data-theme="dark"] .aplayer .aplayer-list ol li,
+html[data-theme="dark"] .aplayer .aplayer-list ol li .aplayer-list-title,
+html[data-theme="dark"] .aplayer .aplayer-list ol li .aplayer-list-author,
+html[data-theme="dark"] .aplayer .aplayer-list ol li .aplayer-list-index {
+    background: transparent !important;
+    color: #c8c4bc !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-list {
+    border-top-color: #34353b !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-list ol li {
+    border-top-color: #2f3036 !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-list ol li:hover,
+html[data-theme="dark"] .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: #2e2f36 !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-list ol li .aplayer-list-index,
+html[data-theme="dark"] .aplayer .aplayer-list ol li .aplayer-list-author {
+    color: #8f8b84 !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-lrc:before,
+html[data-theme="dark"] .aplayer .aplayer-lrc:after {
+    background: linear-gradient(to bottom, #24252a, transparent) !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+    background: #3a3b41 !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+    background: #55565e !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+    background: #d18a72 !important;
+}
+
+/* ---------- 通用补充 ---------- */
+
+html[data-theme="dark"] a {
+    color: #8fb7cf;
+}
+
+html[data-theme="dark"] .post-content img {
+    filter: brightness(86%);
+}
+
+html[data-theme="dark"] li::marker {
+    color: #8f8b84;
+}
+
+html[data-theme="dark"] .post-bottom-bar {
+    background: #202125 !important;
+    border-top: 1px solid #34353b !important;
+}
+
+html[data-theme="dark"] .bottom-bar-item {
+    color: #d8d5cf !important;
+}
+
+html[data-theme="dark"] .aplayer .aplayer-message,
+html[data-theme="dark"] .aplayer .aplayer-notice,
+html[data-theme="dark"] .aplayer .aplayer-error {
+    background: #2e2f36 !important;
+    color: #d8d5cf !important;
+    border-color: #3a3b41 !important;
+}
+
+html[data-theme="dark"] #veditor {
+    color: #e6e2db !important;
+    background-color: transparent !important;
+}

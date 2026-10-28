@@ -1,0 +1,14 @@
+<aside class="col-rail">
+    <div class="col-rail-label">{% if page.group_by == 'section' %}分类{% else %}年份{% endif %}</div>
+    <div class="col-rail-list">
+        {% for group in include.groups %}
+            {% if page.group_by == 'section' %}
+                {% assign target = 's-' | append: forloop.index %}
+            {% else %}
+                {% assign target = 'y-' | append: group.name %}
+            {% endif %}
+            <a href="#{{ target }}" data-target="{{ target }}" class="{% if forloop.first %}active{% endif %}">{{ group.name }}<span>{{ group.items | size }}</span></a>
+        {% endfor %}
+    </div>
+    <div class="col-rail-note">每条内容都有独立锚点，<br>可单独分享。</div>
+</aside>

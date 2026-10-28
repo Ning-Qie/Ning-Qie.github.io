@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ '/style/css/collection.css' | prepend: site.baseurl }}">
+
+{% assign entries = site.data[page.data_key] %}
+{% assign total = entries | size %}
+{% assign unit = '条' %}
+{% if page.collection_type == 'poems' %}{% assign unit = '首' %}{% endif %}
+{% if page.group_by == 'section' %}
+    {% assign groups = entries | group_by: 'section' %}
+{% else %}
+    {% assign groups = entries | group_by: 'year' %}
+{% endif %}
+
+{% include collection/hero.html total=total unit=unit groups=groups %}
+
+{% if page.data_key == 'poems-paradise' %}
+<div class="col-note">
+    <a href="http://haizi.ning0ing.com" target="_blank" rel="noopener">海子的诗 ↗</a>
+</div>
+{% endif %}
+
+{% include collection/toolbar.html total=total unit=unit groups=groups %}
+
+<div class="col-wrap col-layout">
+    {% include collection/rail.html groups=groups %}
+
+    <main class="col-entries" id="col-entries" data-total="{{ total }}" data-unit="{{ unit }}">
+        {% if page.group_by == 'section' %}
+            {% for group in groups %}
+                {% assign gid = 's-' | append: forloop.index %}
+                {% include collection/group.html group=group gid=gid unit=unit kind=page.collection_type %}
+            {% endfor %}
+        {% else %}
+            {% for group in groups %}
+                {% assign gid = 'y-' | append: group.name %}
+                {% include collection/group.html group=group gid=gid unit=unit kind=page.collection_type %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="col-foot"><span class="dot"></span>已加载全部 {{ total }} {{ unit }} · 独立内容库</div>
+        <div class="col-empty" id="col-empty">没有找到匹配的内容</div>
+    </main>
+</div>
+
+<div class="col-toast" id="col-toast">已复制</div>
+
+<script src="{{ '/style/js/collection.js' | prepend: site.baseurl }}" defer></script>

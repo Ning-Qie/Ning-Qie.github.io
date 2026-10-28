@@ -7,3 +7,7 @@ test.html
 _posts\2022-08-25-Prototype-Study.md
 _posts/draft.md
 .DS_Store
+_backup/
+.planning/
+.tmp/
+.jekyll-metadata

@@ -1,10 +1,25 @@
 <head>
     <meta charset="utf-8">
+    <script>
+    (function () {
+        try {
+            var mode = localStorage.getItem('ning-theme') || 'auto';
+            var dark = mode === 'dark' || (mode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            var theme = dark ? 'dark' : 'light';
+            var root = document.documentElement;
+            root.setAttribute('data-theme', theme);
+            root.setAttribute('data-theme-mode', mode);
+            root.style.colorScheme = theme;
+            root.style.backgroundColor = dark ? '#1b1c1f' : '#f7f7f7';
+        } catch (e) {}
+    })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="theme-color" id="theme-color" content="#f7f7f7">
     <meta name="baidu-site-verification" content="code-u0RuRoo0TW" />
     <meta name="google-site-verification" content="ACa0omNmlnz7yQHrbbcNWDJAldBG6Bh44RLauCedxgE" />
     <title>
@@ -32,6 +47,8 @@
     <link href="{{ '/style/css/ning_style.min.css' | prepend: site.baseurl }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/style/css/fonts.min.css' | prepend: site.baseurl }}">
     <link rel="stylesheet" href="{{ '/style/css/iconfont/iconfont.css' | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ '/style/css/theme.css' | prepend: site.baseurl }}">
+    <script src="{{ '/style/js/theme.js' | prepend: site.baseurl }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
     <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>

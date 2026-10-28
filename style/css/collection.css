@@ -1,0 +1,725 @@
+/* ==========================================================================
+   且宁 · 内容集合页（摘抄 / 杂记 / 疯子的诗 / 诗乐园）
+   仅作用于 body.collection-page，避免影响站点其他页面
+   ========================================================================== */
+
+:root {
+    --col-bg: #f4f1e9;
+    --col-surface: #fffdf8;
+    --col-surface-2: #fbf8f1;
+    --col-text: #27251f;
+    --col-text-2: #4a463d;
+    --col-muted: #8c8475;
+    --col-faint: #b3aa98;
+    --col-line: #e7e0d2;
+    --col-line-soft: #f0ebe0;
+    --col-accent: #a8442f;
+    --col-shadow: 0 8px 28px rgba(74, 62, 40, .06);
+    --col-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", STSong, "STSongti-SC-Regular", serif;
+    --col-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --col-mono: "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+html[data-theme="dark"] {
+    --col-bg: #18191b;
+    --col-surface: #222327;
+    --col-surface-2: #1e1f22;
+    --col-text: #ded9cf;
+    --col-text-2: #c2bcb1;
+    --col-muted: #938d82;
+    --col-faint: #6f6a61;
+    --col-line: #33343a;
+    --col-line-soft: #2a2b30;
+    --col-accent: #d18a72;
+    --col-shadow: 0 10px 30px rgba(0, 0, 0, .28);
+}
+
+body.collection-page {
+    padding-top: 70px;
+    background: var(--col-bg) !important;
+    color: var(--col-text);
+    transition: background-color .2s ease, color .2s ease;
+}
+
+body.collection-page *,
+body.collection-page *::before,
+body.collection-page *::after {
+    box-sizing: border-box;
+}
+
+body.collection-page .col-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ---------- hero ---------- */
+
+body.collection-page .col-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--col-line-soft);
+    background:
+        radial-gradient(1200px 380px at 12% -10%, rgba(168, 68, 47, .055), transparent 60%),
+        linear-gradient(180deg, var(--col-surface) 0%, var(--col-surface-2) 100%);
+}
+
+body.collection-page .col-hero-inner {
+    padding-top: 62px;
+    padding-bottom: 44px;
+    position: relative;
+    z-index: 2;
+}
+
+body.collection-page .col-kicker {
+    font-family: var(--col-mono);
+    font-size: 10.5px;
+    letter-spacing: .26em;
+    color: var(--col-accent);
+    margin-bottom: 18px;
+}
+
+body.collection-page .col-title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+body.collection-page .col-title-row h1 {
+    font-family: var(--col-serif);
+    font-size: 52px;
+    line-height: 1.05;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: var(--col-text);
+    border-bottom: 0;
+}
+
+body.collection-page .col-seal {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: var(--col-accent);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-family: var(--col-serif);
+    font-size: 21px;
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .25);
+    transform: rotate(-3deg);
+    margin-top: 8px;
+    flex: none;
+}
+
+body.collection-page .col-sub {
+    font-family: var(--col-serif);
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--col-muted);
+    margin: 18px 0 0;
+    letter-spacing: .02em;
+}
+
+body.collection-page .col-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    font-size: 11.5px;
+    color: var(--col-faint);
+    letter-spacing: .04em;
+}
+
+body.collection-page .col-meta i {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--col-faint);
+    display: inline-block;
+}
+
+body.collection-page .col-glyph {
+    position: absolute;
+    right: 40px;
+    top: -54px;
+    font-family: var(--col-serif);
+    font-size: 330px;
+    line-height: 1;
+    color: var(--col-text);
+    opacity: .035;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+}
+
+html[data-theme="dark"] body.collection-page .col-glyph {
+    opacity: .05;
+}
+
+body.collection-page .col-note {
+    margin: 26px auto 0;
+    max-width: 1040px;
+    padding: 0 32px;
+}
+
+body.collection-page .col-note a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--col-accent);
+    border: 1px solid var(--col-line);
+    background: var(--col-surface);
+    border-radius: 20px;
+    padding: 5px 12px;
+    text-decoration: none;
+}
+
+body.collection-page .col-note a:hover {
+    border-color: var(--col-accent);
+}
+
+/* ---------- toolbar ---------- */
+
+body.collection-page .col-toolbar {
+    position: sticky;
+    top: 70px;
+    z-index: 20;
+    background: var(--col-bg);
+    border-bottom: 1px solid var(--col-line-soft);
+    transition: background-color .2s ease;
+}
+
+body.collection-page .col-toolbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 56px;
+}
+
+body.collection-page .col-search {
+    position: relative;
+    flex: 1;
+    max-width: 360px;
+}
+
+body.collection-page .col-search svg {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    color: var(--col-faint);
+}
+
+body.collection-page .col-search input {
+    width: 100%;
+    height: 36px;
+    border: 1px solid var(--col-line);
+    background: var(--col-surface);
+    border-radius: 8px;
+    padding: 0 12px 0 34px;
+    font-size: 12.5px;
+    color: var(--col-text);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    font-family: var(--col-sans);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+body.collection-page .col-search input::placeholder {
+    color: var(--col-faint);
+}
+
+body.collection-page .col-search input:focus {
+    border-color: var(--col-faint);
+    box-shadow: 0 0 0 3px rgba(168, 68, 47, .06);
+}
+
+body.collection-page .col-count {
+    font-size: 11px;
+    color: var(--col-faint);
+    font-variant-numeric: tabular-nums;
+    margin-left: auto;
+}
+
+body.collection-page .col-count b {
+    color: var(--col-text);
+    font-weight: 600;
+}
+
+body.collection-page .col-sort {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--col-muted);
+}
+
+body.collection-page .col-sort svg {
+    width: 13px;
+    height: 13px;
+}
+
+body.collection-page .col-mobile-groups {
+    display: none;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+}
+
+body.collection-page .col-mobile-groups::-webkit-scrollbar {
+    display: none;
+}
+
+body.collection-page .col-mobile-groups button {
+    border: 1px solid var(--col-line);
+    background: var(--col-surface);
+    border-radius: 20px;
+    padding: 4px 11px;
+    font-size: 11.5px;
+    color: var(--col-muted);
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: var(--col-sans);
+}
+
+body.collection-page .col-mobile-groups button.on {
+    background: var(--col-text);
+    border-color: var(--col-text);
+    color: var(--col-bg);
+}
+
+/* ---------- layout / rail ---------- */
+
+body.collection-page .col-layout {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 48px;
+    padding-top: 38px;
+    padding-bottom: 80px;
+    align-items: start;
+}
+
+body.collection-page .col-rail {
+    position: sticky;
+    top: 142px;
+}
+
+body.collection-page .col-rail-label {
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: var(--col-faint);
+    margin: 2px 0 12px;
+    padding-left: 12px;
+}
+
+body.collection-page .col-rail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-left: 1px solid var(--col-line);
+}
+
+body.collection-page .col-rail a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--col-muted);
+    padding: 6px 0 6px 12px;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+    transition: color .15s, border-color .15s;
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+}
+
+body.collection-page .col-rail a span {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--col-faint);
+    font-family: var(--col-mono);
+}
+
+body.collection-page .col-rail a:hover {
+    color: var(--col-text);
+}
+
+body.collection-page .col-rail a.active {
+    color: var(--col-text);
+    border-left-color: var(--col-accent);
+    font-weight: 600;
+}
+
+body.collection-page .col-rail a.active span {
+    color: var(--col-accent);
+}
+
+body.collection-page .col-rail-note {
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px solid var(--col-line);
+    border-radius: 8px;
+    font-size: 10.5px;
+    line-height: 1.75;
+    color: var(--col-faint);
+    background: var(--col-surface-2);
+}
+
+/* ---------- groups / cards ---------- */
+
+body.collection-page .col-group {
+    margin-bottom: 46px;
+    scroll-margin-top: 142px;
+}
+
+body.collection-page .col-group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid var(--col-line);
+}
+
+body.collection-page .col-group-head h2 {
+    font-family: var(--col-serif);
+    font-size: 26px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--col-text);
+    border-bottom: 0;
+}
+
+body.collection-page .col-group-head .n {
+    font-family: var(--col-mono);
+    font-size: 10.5px;
+    color: var(--col-faint);
+    letter-spacing: .06em;
+}
+
+body.collection-page .col-group-head .line {
+    flex: 1;
+    height: 1px;
+}
+
+body.collection-page .col-group-head .top {
+    font-size: 10.5px;
+    color: var(--col-faint);
+    border: 0;
+    background: none;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-family: var(--col-sans);
+}
+
+body.collection-page .col-group-head .top:hover {
+    color: var(--col-text);
+}
+
+body.collection-page .col-card {
+    position: relative;
+    background: var(--col-surface);
+    border: 1px solid var(--col-line);
+    border-radius: 10px;
+    padding: 24px 26px 15px;
+    margin-bottom: 14px;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+body.collection-page .col-card:hover {
+    border-color: #d6cbb7;
+    box-shadow: var(--col-shadow);
+}
+
+html[data-theme="dark"] body.collection-page .col-card:hover {
+    border-color: #44454c;
+}
+
+body.collection-page .col-text {
+    font-family: var(--col-serif);
+    font-size: 17px;
+    line-height: 1.95;
+    letter-spacing: .015em;
+    color: var(--col-text);
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+body.collection-page .col-poem-title {
+    font-family: var(--col-serif);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--col-text);
+    margin: 0 0 3px;
+    letter-spacing: .03em;
+}
+
+body.collection-page .col-poem-author {
+    font-size: 11px;
+    color: var(--col-faint);
+    margin-bottom: 12px;
+    letter-spacing: .02em;
+}
+
+body.collection-page .col-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--col-line-soft);
+    font-size: 11px;
+    color: var(--col-faint);
+    min-height: 31px;
+}
+
+body.collection-page .col-date {
+    font-family: var(--col-mono);
+    font-size: 10.5px;
+    letter-spacing: .03em;
+    flex: none;
+}
+
+body.collection-page .col-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--col-faint);
+    opacity: .6;
+    flex: none;
+}
+
+body.collection-page .col-source {
+    color: var(--col-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+body.collection-page .col-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity .15s;
+    flex: none;
+}
+
+body.collection-page .col-card:hover .col-actions,
+body.collection-page .col-card:focus-within .col-actions {
+    opacity: 1;
+}
+
+body.collection-page .col-btn {
+    border: 0;
+    background: none;
+    color: var(--col-faint);
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 10.5px;
+    font-family: var(--col-sans);
+    text-decoration: none;
+}
+
+body.collection-page .col-btn:hover {
+    background: var(--col-surface-2);
+    color: var(--col-text);
+}
+
+body.collection-page .col-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+body.collection-page .col-empty {
+    padding: 60px 10px;
+    text-align: center;
+    color: var(--col-faint);
+    font-size: 13px;
+    display: none;
+}
+
+body.collection-page .col-foot {
+    max-width: 100%;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--col-line);
+    font-size: 10.5px;
+    color: var(--col-faint);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.collection-page .col-foot .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--col-accent);
+}
+
+body.collection-page .col-cite-hidden {
+    display: none;
+}
+
+
+body.collection-page .col-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(12px);
+    background: var(--col-text);
+    color: var(--col-bg);
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 7px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s, transform .22s;
+    z-index: 50;
+}
+
+body.collection-page .col-toast.on {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+    body.collection-page {
+        padding-top: 70px;
+    }
+
+    body.collection-page .col-wrap {
+        padding: 0 20px;
+    }
+
+    body.collection-page .col-hero-inner {
+        padding-top: 42px;
+        padding-bottom: 32px;
+    }
+
+    body.collection-page .col-title-row h1 {
+        font-size: 40px;
+    }
+
+    body.collection-page .col-glyph {
+        font-size: 220px;
+        right: -10px;
+        top: -20px;
+    }
+
+    body.collection-page .col-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-top: 0;
+        padding-bottom: 56px;
+    }
+
+    body.collection-page .col-rail {
+        display: none;
+    }
+
+    body.collection-page .col-mobile-groups {
+        display: flex;
+    }
+
+    body.collection-page .col-toolbar-inner {
+        height: auto;
+        padding-top: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    body.collection-page .col-search {
+        max-width: none;
+        order: 2;
+        width: 100%;
+    }
+
+    body.collection-page .col-count {
+        order: 1;
+        margin-left: 0;
+    }
+
+    body.collection-page .col-sort {
+        order: 1;
+        margin-left: auto;
+    }
+
+    body.collection-page .col-group {
+        scroll-margin-top: 142px;
+    }
+
+    body.collection-page .col-card {
+        padding: 19px 18px 12px;
+    }
+
+    body.collection-page .col-text {
+        font-size: 15.5px;
+        line-height: 1.9;
+    }
+
+    body.collection-page .col-actions {
+        opacity: 1;
+    }
+
+    body.collection-page .col-source {
+        white-space: normal;
+    }
+
+    body.collection-page .col-note {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 580px) {
+    body.collection-page .col-title-row {
+        gap: 10px;
+    }
+
+    body.collection-page .col-title-row h1 {
+        font-size: 34px;
+    }
+
+    body.collection-page .col-seal {
+        width: 32px;
+        height: 32px;
+        font-size: 17px;
+        margin-top: 2px;
+    }
+
+    body.collection-page .col-sub {
+        font-size: 14px;
+    }
+
+    body.collection-page .col-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    body.collection-page .col-toolbar {
+        top: 70px;
+    }
+
+    body.collection-page .col-group-head h2 {
+        font-size: 22px;
+    }
+}
+
+html[data-theme="dark"] body.collection-page {
+    background: var(--col-bg) !important;
+}

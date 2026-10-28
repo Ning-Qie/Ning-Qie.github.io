@@ -1,0 +1,28 @@
+{% assign hero_title = page.hero_title | default: page.title %}
+{% assign range = '' %}
+{% if page.group_by == 'section' %}
+    {% assign range = include.groups | map: 'name' | join: ' / ' %}
+{% else %}
+    {% assign first_group = include.groups | first %}
+    {% assign last_group = include.groups | last %}
+    {% if first_group and last_group %}
+        {% assign range = first_group.name | append: ' — ' | append: last_group.name %}
+    {% endif %}
+{% endif %}
+
+<section class="col-hero">
+    <div class="col-glyph">“</div>
+    <div class="col-wrap col-hero-inner">
+        <div class="col-kicker">{{ page.hero_kicker | default: 'COLLECT' }}</div>
+        <div class="col-title-row">
+            <h1>{{ hero_title }}</h1>
+            {% if page.hero_seal %}<span class="col-seal">{{ page.hero_seal }}</span>{% endif %}
+        </div>
+        <p class="col-sub">{{ page.summary }}</p>
+        <div class="col-meta">
+            <span>{{ include.total }} {{ include.unit }}</span>
+            {% if range != '' %}<i></i><span>{{ range }}</span>{% endif %}
+            <i></i><span>持续更新</span>
+        </div>
+    </div>
+</section>
