@@ -71,6 +71,7 @@
         mock: false,
         batch: false,
         publishing: false,
+        readonly: false,
         draftAt: 0
     };
     var draftTimer = null;
@@ -697,6 +698,9 @@
         } else if (state.publishing) {
             sync.innerHTML = '<i style="background:#3d6fe0;box-shadow:0 0 0 3px #eaf0fd"></i><span>正在发布…</span>';
             $('#side-status').textContent = '正在发布到 GitHub…';
+        } else if (state.readonly) {
+            sync.innerHTML = '<i style="background:#c04a3a;box-shadow:0 0 0 3px #f9e9e6"></i><span>token 只读 · 无法发布</span>';
+            $('#side-status').textContent = 'token 缺少 Contents: Read and write，请在 GitHub 更新后重新连接';
         } else if (state.dirty) {
             sync.innerHTML = '<i style="background:#d99a2b;box-shadow:0 0 0 3px #fbf3e3"></i><span>未发布的更改</span>';
             $('#side-status').textContent = '已连接 ' + OWNER + '/' + REPO + ' · ' + BRANCH;
@@ -1099,6 +1103,11 @@
             showToast('请先连接 GitHub');
             return;
         }
+        if (state.readonly) {
+            openConnect(false);
+            showToast('当前 token 只有读权限：请在 GitHub 给 Contents: Read and write 后重新连接');
+            return;
+        }
         ['quotes', 'notes', 'crazy'].forEach(function (key) {
             data[key].forEach(function (entry) { normalizeEntry(key, entry); });
         });
@@ -1178,7 +1187,11 @@
                 renderStatus();
                 button.disabled = false;
                 button.textContent = '确认发布';
-                errorBox.textContent = err.message || '发布失败';
+                var messageText = err.message || '发布失败';
+                if (err.status === 403) {
+                    messageText = 'GitHub 拒绝写入：当前 token 没有 Contents: Read and write 权限。请到 GitHub → Settings → Developer settings → Fine-grained tokens，把该 token 的 Repository access 设为 Only select repositories 并选中本仓库，Contents 改为 Read and write；保存后在「GitHub 设置」里重新连接。';
+                }
+                errorBox.textContent = messageText;
                 errorBox.classList.add('on');
             }
         };
@@ -1244,7 +1257,8 @@
         button.textContent = auto ? '连接中…' : '连接中…';
         try {
             token = tokenValue;
-            await api('/repos/' + OWNER + '/' + REPO);
+            var repoInfo = await api('/repos/' + OWNER + '/' + REPO);
+            state.readonly = !!(repoInfo && repoInfo.permissions && repoInfo.permissions.push === false);
             await loadAll();
             state.loaded = true;
             state.mock = false;
@@ -1256,10 +1270,11 @@
             state.selected = filteredList()[0] ? filteredList()[0].id : null;
             applyDraft();
             renderAll();
-            showToast('已连接 GitHub');
+            showToast(state.readonly ? '已连接，但 token 只有读权限，暂时不能发布' : '已连接 GitHub');
         } catch (err) {
             token = '';
             state.loaded = false;
+            state.readonly = false;
             $('#app').hidden = true;
             var message = err.message || '连接失败';
             if (err.status === 401) message = 'token 无效或已过期，请重新生成。';
@@ -1277,6 +1292,7 @@
     function disconnect() {
         clearToken();
         token = '';
+        state.readonly = false;
         $('#disconnect-btn').hidden = true;
         $('#connect-cancel').hidden = !state.loaded;
         $('#connect-title').textContent = '连接 GitHub 开始写作';
@@ -1430,6 +1446,7 @@
             baseline = clone(data);
             state.loaded = true;
             state.mock = true;
+            state.readonly = false;
             state.selected = filteredList()[0] ? filteredList()[0].id : null;
             applyDraft();
             $('#app').hidden = false;

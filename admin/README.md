@@ -6,7 +6,7 @@
 
 1. 打开 `https://ning0ing.com/admin/`
 2. 在 GitHub → Settings → Developer settings → Fine-grained tokens 新建 token
-3. Repository access 只选 `Ning-Qie/Ning-Qie.github.io`
+3. Repository access 选 **Only select repositories**，只勾选 `Ning-Qie/Ning-Qie.github.io`（不要选 Public repositories 只读选项）
 4. Repository permissions → **Contents: Read and write**（Metadata 会自动只读）
 5. 有效期建议 90 天
 6. 把 token 粘贴到写作台，点「连接 GitHub」
