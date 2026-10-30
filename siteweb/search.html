@@ -58,6 +58,52 @@ permalink: /search
         margin-left: 15px;
         line-height: 35px;
     }
+
+    /* 搜索结果里的星级 */
+    #results-container li {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    #results-container li > a {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .search-stars {
+        flex: none;
+        font-style: normal;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        color: #c9932f;
+        white-space: nowrap;
+    }
+
+    html[data-theme="dark"] .search-stars {
+        color: #d8ab63;
+    }
+
+    /* 只看星标 */
+    .search-filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 14px 0 0 20px;
+        font-size: 13px;
+        color: #8c8475;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .search-filter input {
+        accent-color: #a8442f;
+        cursor: pointer;
+    }
+
+    html[data-theme="dark"] .search-filter {
+        color: #938d82;
+    }
 </style>
 
 <div id="search-tittle" class="common-title">
@@ -66,6 +112,9 @@ permalink: /search
 
 <div id="search-demo-container">
     <input type="search" id="search-input" placeholder="search..." value="" autocomplete="off">
+    <label class="search-filter" id="search-filter" hidden>
+        <input type="checkbox" id="only-starred"> 只看星标
+    </label>
     <ul id="results-container"></ul>
 </div>
 
@@ -77,11 +126,17 @@ permalink: /search
         searchInput: document.getElementById('search-input'),
         resultsContainer: document.getElementById('results-container'),
         json: '/search.json',
-        searchResultTemplate: '<li><a href="{url}" title="{desc}" target="_blank">{title}</a></li>',
+        searchResultTemplate: '<li data-star="{star}"><a href="{url}" title="{desc}" target="_blank">{title}</a><i class="search-stars">{stars}</i></li>',
         noResultsText: '没有找到内容,请换别的关键字进行检索',
         limit: 1000,
         fuzzy: false,
-        exclude: ['Welcome']
+        exclude: ['Welcome'],
+        // 只接管 star / stars；其余占位符返回 undefined，交给库自身处理
+        templateMiddleware: function (prop, value) {
+            if (prop === 'star') return String(parseInt(value, 10) || 0);
+            if (prop === 'stars') return value || '';
+            return undefined;
+        }
     })
     //console.log(document.getElementById('search-input'));
 </script>
@@ -183,4 +238,38 @@ permalink: /search
         document.getElementById("search-tittle").innerHTML = "Search :";
     });
     }, 1000);
+
+    /* ---------- 搜索结果星级：过滤条 + 只看星标 ---------- */
+    (function () {
+        var checkbox = document.getElementById('only-starred');
+        var wrap = document.getElementById('search-filter');
+        var list = document.getElementById('results-container');
+        if (!checkbox || !wrap || !list) return;
+
+        // 列表里有任意星标条目时才显示"只看星标"
+        function syncFilterVisibility() {
+            var any = list.querySelector('li[data-star]:not([data-star="0"])');
+            wrap.hidden = !any;
+            if (!any && checkbox.checked) {
+                checkbox.checked = false;
+            }
+        }
+
+        function applyStarFilter() {
+            var only = checkbox.checked;
+            Array.prototype.forEach.call(list.querySelectorAll('li[data-star]'), function (li) {
+                var star = parseInt(li.getAttribute('data-star'), 10) || 0;
+                li.style.display = (!only || star > 0) ? '' : 'none';
+            });
+        }
+
+        checkbox.addEventListener('change', applyStarFilter);
+
+        // 每次搜索重绘后重新同步（结果由 simple-jekyll-search 直接写 innerHTML）
+        var observer = new MutationObserver(function () {
+            syncFilterVisibility();
+            applyStarFilter();
+        });
+        observer.observe(list, { childList: true });
+    })();
 </script>

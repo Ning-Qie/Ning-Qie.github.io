@@ -109,6 +109,7 @@
           <span class="kbd">⌘K</span>
         </div>
         <div class="year-strip" id="book-strip" style="display:none"></div>
+        <div class="year-strip star-strip" id="star-strip" style="display:none"></div>
         <div class="year-strip" id="year-strip"></div>
         <div class="list-scroll" id="list-scroll"></div>
       </section>
@@ -118,6 +119,10 @@
           <span class="type-pill" id="type-pill">摘抄</span>
           <div class="editor-title" id="editor-title">未选择内容</div>
           <div class="editor-actions">
+            <div class="star-rating" id="star-rating" hidden>
+              <span class="star-label">星级</span>
+              <span class="stars" id="star-buttons" role="radiogroup" aria-label="星级"></span>
+            </div>
             <button class="btn btn-ghost" id="batch-toggle" type="button" style="height:28px;font-size:11.5px">批量粘贴</button>
             <button class="icon-btn" id="copy-link" type="button" title="复制单条链接">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="10" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>

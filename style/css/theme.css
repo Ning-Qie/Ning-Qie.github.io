@@ -497,3 +497,18 @@ html[data-theme="dark"] #veditor {
     color: #e6e2db !important;
     background-color: transparent !important;
 }
+
+/* ==========================================================================
+   顶部站点标题垂直居中（覆盖 style.min.css 中的 margin-top:-28px 偏移）
+   ========================================================================== */
+
+.header .navbar-container #header-site-title.navbar-logo,
+.header .navbar-container .navbar-logo#header-site-title {
+    top: 50%;
+    height: auto;
+    margin-top: 0;
+    line-height: 1.2;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+}

@@ -64,6 +64,7 @@
         book: 'crazy',
         year: 'all',
         section: 'all',
+        star: 'all',
         query: '',
         selected: null,
         dirty: false,
@@ -302,6 +303,10 @@
             } else if (state.section !== 'all' && entry.section !== state.section) {
                 return false;
             }
+            if (state.type === 'quotes' && state.star !== 'all') {
+                var min = parseInt(state.star, 10);
+                if (!isNaN(min) && starValue(entry) < min) return false;
+            }
             if (!q) return true;
             return [entry.text, entry.title, entry.author, entry.source, entry.note, (entry.tags || []).join(' ')]
                 .join(' ').toLowerCase().indexOf(q) !== -1;
@@ -440,6 +445,51 @@
             });
         });
 
+        var starStrip = $('#star-strip');
+        if (starStrip) {
+            if (state.type === 'quotes') {
+                var starred = currentList().filter(function (entry) { return starValue(entry) > 0; }).length;
+                var top = currentList().filter(function (entry) { return starValue(entry) >= 4; }).length;
+                starStrip.style.display = 'flex';
+                starStrip.innerHTML = [
+                    { value: 'all', label: '全部', count: currentList().length },
+                    { value: '1', label: '★ 星标', count: starred }
+                ].map(function (item) {
+                    return '<button class="chip ' + (state.star === item.value ? 'active' : '') + '" data-star-filter="' + item.value + '" type="button">' +
+                        item.label + ' ' + item.count + '</button>';
+                }).join('') +
+                    '<span class="chip-min"><span>至少</span><select id="star-min-select">' +
+                    [0,1,2,3,4,5].map(function (n) {
+                        var sel = (n > 0 && String(state.star) === String(n)) ? ' selected' : '';
+                        return '<option value="' + n + '"' + sel + '>' + (n === 0 ? 'N 星' : n + ' 星') + '</option>';
+                    }).join('') +
+                    '</select></span>';
+
+                $$('#star-strip [data-star-filter]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        state.star = (state.star === btn.dataset.starFilter) ? 'all' : btn.dataset.starFilter;
+                        var list = filteredList();
+                        state.selected = list[0] ? list[0].id : null;
+                        renderAll();
+                    });
+                });
+                var minSel = $('#star-min-select');
+                if (minSel) {
+                    minSel.addEventListener('change', function () {
+                        var n = parseInt(minSel.value, 10) || 0;
+                        state.star = n === 0 ? 'all' : String(n);
+                        var list = filteredList();
+                        state.selected = list[0] ? list[0].id : null;
+                        renderAll();
+                    });
+                }
+            } else {
+                if (state.star !== 'all') state.star = 'all';
+                starStrip.style.display = 'none';
+                starStrip.innerHTML = '';
+            }
+        }
+
         var bookStrip = $('#book-strip');
         if (state.type === 'poems') {
             bookStrip.style.display = 'flex';
@@ -505,6 +555,10 @@
             var tags = (entry.tags || []).slice(0, 3).map(function (tag) {
                 return '<span class="tag">' + esc(tag) + '</span>';
             }).join('');
+            var star = state.type === 'quotes' ? starValue(entry) : 0;
+            if (star > 0) {
+                tags = '<span class="entry-stars" title="' + star + ' 星">' + new Array(star + 1).join('★') + '</span>' + tags;
+            }
             html += '<div class="entry ' + (entry.id === state.selected ? 'active' : '') + '" data-id="' + esc(entry.id) + '">' +
                 '<div class="entry-top"><span class="entry-date">' + esc(shortDate) + '</span><span class="entry-src">' + esc(sourceLabel(entry)) + '</span></div>' +
                 '<p>' + esc(excerpt(entry)) + '</p>' +
@@ -561,6 +615,54 @@
         return parts.join(' ');
     }
 
+    function starValue(entry) {
+        var value = entry && entry.star ? parseInt(entry.star, 10) : 0;
+        if (isNaN(value)) return 0;
+        return Math.max(0, Math.min(5, value));
+    }
+
+    function renderStarRating() {
+        var box = $('#star-rating');
+        var list = $('#star-buttons');
+        if (!box || !list) return;
+        var entry = currentEntry();
+        var applicable = state.type === 'quotes' && !!entry && !state.batch;
+        box.hidden = !applicable;
+        if (!applicable) return;
+        var value = starValue(entry);
+        var html = '';
+        for (var i = 1; i <= 5; i++) {
+            html += '<button class="star-btn' + (i <= value ? ' on' : '') + '" type="button" data-star="' + i +
+                '" role="radio" aria-checked="' + (i === value ? 'true' : 'false') +
+                '" aria-label="' + i + ' 星" title="' + i + ' 星">★</button>';
+        }
+        html += '<button class="star-clear" type="button" data-star="0" title="清除星级">清除</button>';
+        list.innerHTML = html;
+        $$('#star-buttons .star-btn, #star-buttons .star-clear').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                setStar(parseInt(btn.dataset.star, 10) || 0);
+            });
+        });
+    }
+
+    function setStar(value) {
+        var entry = currentEntry();
+        if (!entry) return;
+        var next = Math.max(0, Math.min(5, value));
+        if (starValue(entry) === next) next = 0;          // 再点同一颗星 = 取消
+        if (next > 0) entry.star = next;
+        else delete entry.star;
+        state.dirty = true;
+        renderStarRating();
+        renderList();
+        renderPreview();
+        renderStatus();
+        renderDraftBanner();
+        saveDraftSoon();
+        updatePublishHint();
+        showToast(next > 0 ? '已标记 ' + next + ' 星' : '已清除星级');
+    }
+
     function renderEditor() {
         var entry = currentEntry();
         var meta = currentMeta();
@@ -577,6 +679,8 @@
             $('#editor-title').textContent = '未选择内容';
             $('#form').innerHTML = '<div class="preview-empty" style="padding:70px 10px">左侧选择一条内容，或点 + 新建。</div>';
             $('#foot-meta').textContent = '选择一个条目开始编辑';
+            var starBox = $('#star-rating');
+            if (starBox) starBox.hidden = true;
             return;
         }
 
@@ -622,6 +726,7 @@
         $('#editor-scroll').scrollTop = 0;
         updateChar();
         updateFoot();
+        renderStarRating();
     }
 
     function updateEditorTitle() {
@@ -679,7 +784,10 @@
                 '<div class="quote-cite"><span>——' + esc(cite) + '</span><span class="src">' + esc(entry.section || '') + '</span></div>' +
                 '</div>';
         } else {
-            $('#preview-body').innerHTML = '<div class="quote-card">' +
+            var star = starValue(entry);
+            var starLine = (state.type === 'quotes' && star > 0)
+                ? '<div class="quote-stars">' + new Array(star + 1).join('★') + '</div>' : '';
+            $('#preview-body').innerHTML = '<div class="quote-card">' + starLine +
                 '<p class="quote-text">' + text + '</p>' +
                 '<div class="quote-cite"><span>——' + esc(cite) + '</span><span class="src">' + esc((entry.tags || [])[0] || '') + '</span></div>' +
                 '</div>';
@@ -871,7 +979,7 @@
         var entry;
         var idPrefix = { quotes: 'q', notes: 'n', crazy: 'pc', paradise: 'pp' }[key];
         if (key === 'quotes') {
-            entry = { id: uid(idPrefix), date: todayISO(), dateLabel: dateLabel(todayISO()), text: '', author: '', source: '', note: '', cite: '', citeAnomaly: false, year: +todayISO().slice(0, 4), tags: ['摘抄'] };
+            entry = { id: uid(idPrefix), date: todayISO(), dateLabel: dateLabel(todayISO()), text: '', author: '', source: '', note: '', cite: '', citeAnomaly: false, year: +todayISO().slice(0, 4), tags: ['摘抄'], star: 0 };
         } else if (key === 'notes') {
             entry = { id: uid(idPrefix), date: todayISO(), dateLabel: dateLabel(todayISO()), text: '', author: '', source: '', note: '', cite: '', citeAnomaly: false, year: +todayISO().slice(0, 4), tags: ['杂记'] };
         } else if (key === 'crazy') {

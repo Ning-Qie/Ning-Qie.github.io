@@ -571,3 +571,134 @@
     .topbar .crumb { display: none; }
     .toast { bottom: 78px; }
 }
+
+/* ---------- 星级标记（仅摘抄） ---------- */
+
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 6px 0 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  flex: none;
+}
+
+.star-rating .star-label {
+  display: none;
+}
+
+.star-rating .stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.star-rating .star-btn {
+  border: 0;
+  background: none;
+  padding: 0 1px;
+  line-height: 1;
+  font-size: 13px;
+  color: #ddd8cb;
+  cursor: pointer;
+  transition: color .12s, transform .12s;
+}
+
+.star-rating .star-btn:hover {
+  transform: scale(1.12);
+}
+
+.star-rating .star-btn.on {
+  color: #d9a02f;
+}
+
+.star-rating .star-clear {
+  border: 0;
+  background: none;
+  padding: 0 0 0 2px;
+  font-size: 10px;
+  color: #b1b6be;
+  cursor: pointer;
+}
+
+.star-rating .star-clear:hover {
+  color: #7e848e;
+}
+
+/* 列表行里的星级 */
+.entry-stars {
+  color: #d9a02f;
+  letter-spacing: 1px;
+  font-size: 10px;
+  flex: none;
+}
+
+/* 筛选条里的星标过滤 */
+.star-filter {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fbfbfc;
+}
+
+.star-filter button {
+  height: 26px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  font-size: 11.5px;
+  color: #7e848e;
+  cursor: pointer;
+}
+
+.star-filter button.on {
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .07);
+}
+
+/* 预览卡片星级 */
+.quote-stars {
+  color: #d9a02f;
+  letter-spacing: 1.5px;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.star-rating[hidden] { display: none !important; }
+
+@media (max-width: 1100px) {
+  .editor-title { max-width: 42%; }
+}
+
+.star-strip { align-items: center; flex-wrap: wrap; }
+
+.chip-min {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: #a3a8b1;
+  margin-left: 2px;
+}
+
+.chip-min select {
+  height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 11px;
+  color: var(--text);
+  padding: 0 4px;
+  outline: none;
+}
+
+.chip-min select:focus {
+  border-color: #b9caee;
+}

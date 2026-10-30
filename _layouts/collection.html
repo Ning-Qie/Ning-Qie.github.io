@@ -14,6 +14,14 @@ layout: default
     {% assign groups = entries | group_by: 'year' %}
 {% endif %}
 
+{% assign starred = 0 %}
+{% if page.collection_type == 'quotes' %}
+    {% for entry in entries %}
+        {% assign s = entry.star | default: 0 %}
+        {% if s > 0 %}{% assign starred = starred | plus: 1 %}{% endif %}
+    {% endfor %}
+{% endif %}
+
 {% include collection/hero.html total=total unit=unit groups=groups %}
 
 {% if page.data_key == 'poems-paradise' %}
@@ -22,12 +30,12 @@ layout: default
 </div>
 {% endif %}
 
-{% include collection/toolbar.html total=total unit=unit groups=groups %}
+{% include collection/toolbar.html total=total unit=unit groups=groups starred=starred %}
 
 <div class="col-wrap col-layout">
     {% include collection/rail.html groups=groups %}
 
-    <main class="col-entries" id="col-entries" data-total="{{ total }}" data-unit="{{ unit }}">
+    <main class="col-entries" id="col-entries" data-total="{{ total }}" data-unit="{{ unit }}"{% if page.collection_type == 'quotes' %} data-starred="{{ starred }}"{% endif %}>
         {% if page.group_by == 'section' %}
             {% for group in groups %}
                 {% assign gid = 's-' | append: forloop.index %}

@@ -25,6 +25,8 @@ layout: none
     "url": {{ '/2020-06-26-zhaichao#' | append: entry.id | prepend: site.baseurl | jsonify }},
     "date": {{ entry.date | default: '' | jsonify }},
     "description": {{ qdesc | jsonify }},
+    {% assign qstar = entry.star | default: 0 %}"star": "{{ qstar }}",
+    "stars": "{% for i in (1..qstar) %}★{% endfor %}",
     "content": {{ qcontent | strip_html | strip_newlines | jsonify }}
   }
 {% endfor %}

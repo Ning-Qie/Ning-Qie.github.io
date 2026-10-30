@@ -723,3 +723,257 @@ body.collection-page .col-toast.on {
 html[data-theme="dark"] body.collection-page {
     background: var(--col-bg) !important;
 }
+
+/* ==========================================================================
+   排序 / 星级筛选 / 星级标记 / 锚点复制（2026-10 优化）
+   ========================================================================== */
+
+body.collection-page .col-sort {
+    gap: 7px;
+}
+
+body.collection-page .col-sort.is-static {
+    color: var(--col-faint);
+}
+
+body.collection-page .col-sort-label {
+    letter-spacing: .04em;
+}
+
+body.collection-page .col-select-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+body.collection-page .col-select-wrap select {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 30px;
+    padding: 0 26px 0 10px;
+    border: 1px solid var(--col-line);
+    border-radius: 7px;
+    background: var(--col-surface);
+    color: var(--col-text);
+    font-family: var(--col-sans);
+    font-size: 11.5px;
+    line-height: 1;
+    cursor: pointer;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+body.collection-page .col-select-wrap select:hover {
+    border-color: var(--col-faint);
+}
+
+body.collection-page .col-select-wrap select:focus-visible {
+    border-color: var(--col-faint);
+    box-shadow: 0 0 0 3px rgba(168, 68, 47, .07);
+}
+
+body.collection-page .col-select-wrap .chev {
+    position: absolute;
+    right: 8px;
+    width: 11px;
+    height: 11px;
+    color: var(--col-faint);
+    pointer-events: none;
+}
+
+/* ---------- 星级筛选 ---------- */
+
+body.collection-page .col-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid var(--col-line);
+    border-radius: 8px;
+    background: var(--col-surface-2);
+}
+
+body.collection-page .col-filter button {
+    border: 0;
+    background: none;
+    font-family: var(--col-sans);
+    font-size: 11.5px;
+    line-height: 1;
+    color: var(--col-muted);
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s, background-color .15s;
+}
+
+body.collection-page .col-filter button:hover {
+    color: var(--col-text);
+}
+
+body.collection-page .col-filter button.on {
+    background: var(--col-surface);
+    color: var(--col-text);
+    box-shadow: 0 1px 2px rgba(74, 62, 40, .09);
+}
+
+body.collection-page .col-filter button b {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--col-accent);
+    margin-left: 2px;
+}
+
+/* ---------- 卡片星级 ---------- */
+
+body.collection-page .col-card.has-star {
+    padding-top: 30px;
+}
+
+body.collection-page .col-stars {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: var(--col-sans);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #c9932f;
+    user-select: none;
+}
+
+html[data-theme="dark"] body.collection-page .col-stars {
+    color: #d8ab63;
+}
+
+/* ---------- 锚点按钮 / 定位高亮 ---------- */
+
+body.collection-page .col-anchor svg {
+    width: 13px;
+    height: 13px;
+}
+
+body.collection-page .col-card.is-target {
+    border-color: var(--col-accent);
+    box-shadow: 0 0 0 3px rgba(168, 68, 47, .1), var(--col-shadow);
+}
+
+/* ---------- 响应式补充 ---------- */
+
+@media (max-width: 900px) {
+    body.collection-page .col-filter {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+
+    body.collection-page .col-filter button {
+        flex: 1;
+        text-align: center;
+    }
+
+    body.collection-page .col-sort {
+        order: 1;
+    }
+
+    body.collection-page .col-card.has-star {
+        padding-top: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    body.collection-page .col-stars {
+        position: static;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    body.collection-page .col-card.has-star {
+        padding-top: 19px;
+    }
+}
+
+body.collection-page .col-group-head .n.is-filtered {
+    color: var(--col-accent);
+}
+
+/* 移动端：计数 + 排序一行，搜索独占一行，星级筛选独占一行 */
+@media (max-width: 900px) {
+    body.collection-page .col-toolbar-inner {
+        row-gap: 9px;
+    }
+
+    body.collection-page .col-search {
+        order: 3;
+        /* 基础样式的 flex:1 会让搜索框与计数/排序挤在同一行，这里强制独占一行 */
+        flex: 1 0 100%;
+        width: 100%;
+        max-width: none;
+    }
+
+    body.collection-page .col-count {
+        order: 1;
+    }
+
+    body.collection-page .col-sort {
+        order: 2;
+        margin-left: auto;
+    }
+
+    body.collection-page .col-filter {
+        order: 4;
+        margin-bottom: 10px;
+    }
+}
+
+/* ---------- 星级下限选择器（任意 N 星以上） ---------- */
+
+body.collection-page .col-star-min {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding-left: 4px;
+    border-left: 1px solid var(--col-line);
+    margin-left: 3px;
+}
+
+body.collection-page .col-star-min-label {
+    font-size: 11px;
+    color: var(--col-faint);
+    letter-spacing: .02em;
+    white-space: nowrap;
+}
+
+body.collection-page .col-select-wrap.is-mini select {
+    height: 26px;
+    padding: 0 22px 0 8px;
+    font-size: 11px;
+    border-radius: 6px;
+    background: var(--col-surface);
+}
+
+body.collection-page .col-select-wrap.is-mini .chev {
+    right: 6px;
+    width: 10px;
+    height: 10px;
+}
+
+body.collection-page .col-filter .col-star-min select:focus-visible {
+    border-color: var(--col-faint);
+    box-shadow: 0 0 0 3px rgba(168, 68, 47, .07);
+}
+
+@media (max-width: 900px) {
+    body.collection-page .col-star-min {
+        padding-left: 0;
+        border-left: 0;
+        margin-left: 0;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    body.collection-page .col-filter button {
+        flex: 0 0 auto;
+    }
+}

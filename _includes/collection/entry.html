@@ -17,8 +17,13 @@
     {% if entry.note and entry.note != '' %}{% assign source_text = source_text | append: ' ' | append: entry.note %}{% endif %}
 {% endif %}
 
+{% assign star = entry.star | default: 0 %}
+{% if star > 5 %}{% assign star = 5 %}{% endif %}
+{% assign sort_date = entry.date | default: '' %}
+{% assign sort_year = entry.year | default: 0 %}
+
 {% if include.kind == 'poems' %}
-<article class="col-card col-poem" id="{{ entry.id }}">
+<article class="col-card col-poem" id="{{ entry.id }}" data-id="{{ entry.id }}" data-date="{{ sort_date }}" data-year="{{ sort_year }}" data-star="{{ star }}">
     {% if entry.title and entry.title != '' %}<h3 class="col-poem-title">{{ entry.title | escape }}</h3>{% endif %}
     {% if entry.author and entry.author != '' %}<div class="col-poem-author">{{ entry.author | escape }}</div>{% endif %}
     <p class="col-text">{{ entry.text | escape }}</p>
@@ -30,13 +35,18 @@
             <button class="col-btn" type="button" data-copy="{{ entry.id }}" title="复制这首诗">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="10" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
             </button>
-            <a class="col-btn" href="#{{ entry.id }}" title="单条链接">#</a>
+            <a class="col-btn col-anchor" href="#{{ entry.id }}" data-link="{{ entry.id }}" title="复制链接">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.3-2.3a4 4 0 0 0-5.7-5.7l-1.1 1.1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.3 2.3a4 4 0 0 0 5.7 5.7l1.1-1.1"/></svg>
+            </a>
         </div>
     </div>
     <span class="col-cite-hidden">{{ entry.author | escape }}</span>
 </article>
 {% else %}
-<article class="col-card col-quote" id="{{ entry.id }}">
+<article class="col-card col-quote{% if star > 0 %} has-star{% endif %}" id="{{ entry.id }}" data-id="{{ entry.id }}" data-date="{{ sort_date }}" data-year="{{ sort_year }}" data-star="{{ star }}">
+    {% if star > 0 %}
+    <span class="col-stars" title="{{ star }} 星" aria-label="星级 {{ star }}，共 5 星">{% for i in (1..star) %}★{% endfor %}</span>
+    {% endif %}
     <p class="col-text">{{ entry.text | escape }}</p>
     <div class="col-card-meta">
         {% if date_text != '' %}
@@ -48,7 +58,9 @@
             <button class="col-btn" type="button" data-copy="{{ entry.id }}" title="复制这条内容">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="10" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/></svg>
             </button>
-            <a class="col-btn" href="#{{ entry.id }}" title="单条链接">#</a>
+            <a class="col-btn col-anchor" href="#{{ entry.id }}" data-link="{{ entry.id }}" title="复制链接">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.3-2.3a4 4 0 0 0-5.7-5.7l-1.1 1.1"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.3 2.3a4 4 0 0 0 5.7 5.7l1.1-1.1"/></svg>
+            </a>
         </div>
     </div>
     <span class="col-cite-hidden">{{ source_text | escape }}</span>

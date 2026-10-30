@@ -6,10 +6,47 @@
                 <input id="col-search" type="search" placeholder="在 {{ include.total }} {{ include.unit }}中搜索…" autocomplete="off" aria-label="搜索">
             </div>
             <div class="col-count">共 <b id="col-shown">{{ include.total }}</b> {{ include.unit }}</div>
+
+            {% if page.collection_type == 'quotes' %}
+            <div class="col-filter" id="col-filter" role="group" aria-label="按星级筛选">
+                <button type="button" data-star="all" class="on" aria-pressed="true">全部</button>
+                <button type="button" data-star="1" aria-pressed="false">★ 星标 <b>{{ include.starred }}</b></button>
+                <span class="col-star-min">
+                    <span class="col-star-min-label">至少</span>
+                    <span class="col-select-wrap is-mini">
+                        <select id="col-star-min" aria-label="筛选至少几星">
+                            <option value="0">N 星</option>
+                            <option value="1">1 星</option>
+                            <option value="2">2 星</option>
+                            <option value="3">3 星</option>
+                            <option value="4">4 星</option>
+                            <option value="5">5 星</option>
+                        </select>
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                </span>
+            </div>
+            {% endif %}
+
+            {% if page.group_by == 'section' %}
+            <div class="col-sort is-static">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h10M4 12h7M4 17h4"/></svg>
+                分类排列
+            </div>
+            {% else %}
             <div class="col-sort">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>
-                {% if page.group_by == 'section' %}分类排列{% else %}最新在前{% endif %}
+                <span class="col-sort-label">排序</span>
+                <span class="col-select-wrap">
+                    <select id="col-sort" aria-label="排序方式">
+                        <option value="desc">最新在前</option>
+                        <option value="asc">最早在前</option>
+                        {% if page.collection_type == 'quotes' %}<option value="star">星级优先</option>{% endif %}
+                    </select>
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
             </div>
+            {% endif %}
         </div>
         <div class="col-mobile-groups" id="col-mobile-groups">
             {% for group in include.groups %}
