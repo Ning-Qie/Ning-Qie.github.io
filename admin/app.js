@@ -8,6 +8,7 @@
     var TOKEN_KEY = 'ning-admin-token';
     var DRAFT_KEY = 'ning-admin-draft-v1';
     var TRASH_KEY = 'ning-admin-trash-v1';
+    var UI_KEY = 'ning-admin-ui-v2';
 
     var FILES = {
         quotes: {
@@ -73,10 +74,17 @@
         batch: false,
         publishing: false,
         readonly: false,
-        draftAt: 0
+        draftAt: 0,
+        sideCollapsed: false,
+        focusMode: false,
+        autoHidden: false,
+        previewW: 404,
+        restoreW: 404
     };
     var draftTimer = null;
     var listTimer = null;
+    var resizeTimer = null;
+    var previewDefault = 404;
 
     var $ = function (sel, root) { return (root || document).querySelector(sel); };
     var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
@@ -177,6 +185,169 @@
         try {
             localStorage.setItem(TRASH_KEY, JSON.stringify(list));
         } catch (e) {}
+    }
+
+    function readUi() {
+        try {
+            var raw = localStorage.getItem(UI_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function writeUi() {
+        try {
+            localStorage.setItem(UI_KEY, JSON.stringify({
+                sideCollapsed: state.sideCollapsed,
+                focusMode: state.focusMode,
+                previewW: state.previewW
+            }));
+        } catch (e) {}
+    }
+
+    function workspaceWidth() {
+        var ws = document.querySelector('.workspace');
+        return ws ? ws.getBoundingClientRect().width : window.innerWidth - 232;
+    }
+
+    function listPaneWidth() {
+        var pane = document.querySelector('.list-pane');
+        return pane && pane.getBoundingClientRect().width ? pane.getBoundingClientRect().width : 330;
+    }
+
+    /* 预览可拖范围：编辑区在时给它留 430px 可读宽度；编辑区让位后预览可铺满 */
+    function previewBounds(stageHidden) {
+        var rest = workspaceWidth() - listPaneWidth();
+        var max = stageHidden ? rest - 2 : rest - 430;
+        return { min: 300, max: Math.min(920, Math.max(320, Math.round(max))) };
+    }
+
+    /* 三栏布局状态：侧栏收起 / 编辑区让位（专注模式或拖拽中临时让位） */
+    function layoutState() {
+        var stageHidden = state.focusMode || state.autoHidden;
+        return {
+            collapsed: state.sideCollapsed,
+            stageHidden: stageHidden,
+            previewW: state.previewW
+        };
+    }
+
+    function applyLayout() {
+        var app = $('#app');
+        if (!app) return;
+        var s = layoutState();
+        app.classList.toggle('side-collapsed', s.collapsed);
+        app.classList.toggle('editor-off', s.stageHidden);
+        app.classList.toggle('focus-mode', state.focusMode);
+        app.style.setProperty('--preview-w', s.previewW + 'px');
+
+        var sideBtn = $('#side-toggle');
+        if (sideBtn) sideBtn.setAttribute('aria-expanded', s.collapsed ? 'false' : 'true');
+
+        var stageBtn = $('#editor-toggle');
+        if (stageBtn) {
+            stageBtn.setAttribute('aria-pressed', s.stageHidden ? 'true' : 'false');
+            stageBtn.title = s.stageHidden ? '显示编辑区（⌘E）' : '隐藏编辑区（⌘E）';
+            stageBtn.classList.toggle('on', s.stageHidden);
+        }
+    }
+
+    function collapseSidebar() {
+        state.sideCollapsed = !state.sideCollapsed;
+        state.previewW = clampPreview(state.previewW, layoutState().stageHidden);
+        applyLayout();
+        writeUi();
+    }
+
+    function toggleFocus() {
+        if (window.innerWidth <= 900) {
+            setView(document.body.dataset.view === 'edit' ? 'preview' : 'edit');
+            return;
+        }
+        if (state.focusMode || state.autoHidden) {
+            state.focusMode = false;
+            state.autoHidden = false;
+            state.previewW = clampPreview(state.restoreW, false);
+            showToast('已恢复编辑区');
+        } else {
+            state.restoreW = state.previewW;
+            state.focusMode = true;
+            state.autoHidden = false;
+            state.previewW = previewBounds(true).max;
+            showToast('编辑区已隐藏 · 预览铺满（⌘E 恢复）');
+        }
+        applyLayout();
+        writeUi();
+    }
+
+    function clampPreview(width, stageHidden) {
+        var b = previewBounds(stageHidden);
+        return Math.max(b.min, Math.min(b.max, Math.round(width)));
+    }
+
+    /* live = 拖动中：越过编辑区可读下限时编辑区临时让位，拖回来自动恢复 */
+    function setPreviewWidth(width, live) {
+        if (live && !state.focusMode) {
+            var limit = previewBounds(false).max;
+            if (!state.autoHidden && width > limit + 10) {
+                state.restoreW = limit;
+                state.autoHidden = true;
+            } else if (state.autoHidden && width <= limit) {
+                state.autoHidden = false;
+                state.restoreW = limit;
+            }
+        }
+        state.previewW = clampPreview(width, layoutState().stageHidden);
+        applyLayout();
+        var badge = $('#resize-badge');
+        if (badge) {
+            badge.hidden = !live;
+            if (live) badge.textContent = state.previewW + 'px';
+        }
+        if (!live) writeUi();
+    }
+
+    function bindResize() {
+        var grip = $('#preview-grip');
+        if (!grip) return;
+        grip.addEventListener('pointerdown', function (event) {
+            if (window.innerWidth <= 900 || state.focusMode) return;
+            event.preventDefault();
+            var startX = event.clientX;
+            var startW = $('.preview-pane').getBoundingClientRect().width;
+            document.body.classList.add('resizing');
+            grip.classList.add('dragging');
+            try { grip.setPointerCapture(event.pointerId); } catch (e) {}
+            function move(ev) {
+                setPreviewWidth(startW - (ev.clientX - startX), true);
+            }
+            function up() {
+                document.body.classList.remove('resizing');
+                grip.classList.remove('dragging');
+                var badge = $('#resize-badge');
+                if (badge) badge.hidden = true;
+                window.removeEventListener('pointermove', move);
+                window.removeEventListener('pointerup', up);
+                writeUi();
+            }
+            window.addEventListener('pointermove', move);
+            window.addEventListener('pointerup', up);
+        });
+        grip.addEventListener('dblclick', function () {
+            state.focusMode = false;
+            state.autoHidden = false;
+            setPreviewWidth(previewDefault, false);
+            showToast('预览宽度已复位');
+        });
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                state.previewW = clampPreview(state.previewW, layoutState().stageHidden);
+                applyLayout();
+                writeUi();
+            }, 180);
+        });
     }
 
     function currentKey() {
@@ -579,6 +750,59 @@
                 renderAll();
             });
         });
+    }
+
+    function isTyping(event) {
+        var target = event.target;
+        if (!target) return false;
+        var tag = target.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
+        return !!target.isContentEditable;
+    }
+
+    function scrollSelectedIntoView() {
+        var row = $('#list-scroll .entry.active');
+        if (row) row.scrollIntoView({ block: 'nearest' });
+    }
+
+    function selectEntry(id) {
+        if (!id || id === state.selected) return;
+        state.selected = id;
+        closeBatch();
+        renderList();
+        renderEditor();
+        renderPreview();
+        scrollSelectedIntoView();
+        if (window.innerWidth <= 900) setView('edit');
+    }
+
+    function moveSelection(delta) {
+        var list = filteredList();
+        if (!list.length) return;
+        var index = list.findIndex(function (entry) { return entry.id === state.selected; });
+        if (index < 0) index = delta > 0 ? -1 : 0;
+        var next = list[Math.min(list.length - 1, Math.max(0, index + delta))];
+        if (!next) return;
+        selectEntry(next.id);
+    }
+
+    /* 数字键设定星级：按几就是几星；再按同一数字 = 取消；0 也取消 */
+    function starFromKeyboard(value) {
+        var entry = currentEntry();
+        if (!entry) return;
+        var next = Math.max(0, Math.min(5, value));
+        if (next > 0 && starValue(entry) === next) next = 0;
+        if (next > 0) entry.star = next;
+        else delete entry.star;
+        state.dirty = true;
+        renderStarRating();
+        renderList();
+        renderPreview();
+        renderStatus();
+        renderDraftBanner();
+        saveDraftSoon();
+        updatePublishHint();
+        showToast(next > 0 ? '已设置 ' + next + ' 星' : '已清除星级');
     }
 
     function field(label, control, hint) {
@@ -1481,6 +1705,9 @@
         $('#view-site').addEventListener('click', function () {
             window.open(SITE + currentMeta().page, '_blank', 'noopener');
         });
+        $('#side-toggle').addEventListener('click', collapseSidebar);
+        $('#editor-toggle').addEventListener('click', toggleFocus);
+        bindResize();
         $('#settings-btn').addEventListener('click', function () { openConnect(false); });
         $('#settings-btn-top').addEventListener('click', function () { openConnect(false); });
         $('#trash-btn').addEventListener('click', openTrash);
@@ -1527,6 +1754,34 @@
                 event.preventDefault();
                 $('#search').focus();
             }
+            if (meta && event.key.toLowerCase() === 'b') {
+                event.preventDefault();
+                collapseSidebar();
+            }
+            if (meta && event.key.toLowerCase() === 'e') {
+                event.preventDefault();
+                toggleFocus();
+            }
+            var typing = isTyping(event);
+            var blocked = meta || event.altKey || !!$('#modal-root').innerHTML ||
+                !$('#connect-screen').hidden || state.batch;
+            if (!typing && !blocked) {
+                if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    moveSelection(1);
+                    return;
+                }
+                if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    moveSelection(-1);
+                    return;
+                }
+                if (/^[0-5]$/.test(event.key) && state.type === 'quotes') {
+                    event.preventDefault();
+                    starFromKeyboard(parseInt(event.key, 10));
+                    return;
+                }
+            }
             if (event.key === 'Escape') {
                 if ($('#modal-root').innerHTML) {
                     $('#modal-root').innerHTML = '';
@@ -1570,7 +1825,14 @@
     }
 
     function init() {
+        var ui = readUi();
+        if (ui) {
+            state.sideCollapsed = !!ui.sideCollapsed;
+            state.focusMode = !!ui.focusMode;
+            if (typeof ui.previewW === 'number') state.previewW = ui.previewW;
+        }
         bind();
+        applyLayout();
         renderTypes();
         renderYearNav();
         var mock = new URLSearchParams(location.search).get('mock') === '1';
