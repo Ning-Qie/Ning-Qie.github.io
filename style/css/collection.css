@@ -927,7 +927,7 @@ body.collection-page .col-group-head .n.is-filtered {
     }
 }
 
-/* ---------- 星级下限选择器（任意 N 星以上） ---------- */
+/* ---------- 星级下限选择器（任意 1-5 星以上） ---------- */
 
 body.collection-page .col-star-min {
     display: inline-flex;
@@ -936,13 +936,6 @@ body.collection-page .col-star-min {
     padding-left: 4px;
     border-left: 1px solid var(--col-line);
     margin-left: 3px;
-}
-
-body.collection-page .col-star-min-label {
-    font-size: 11px;
-    color: var(--col-faint);
-    letter-spacing: .02em;
-    white-space: nowrap;
 }
 
 body.collection-page .col-select-wrap.is-mini select {
